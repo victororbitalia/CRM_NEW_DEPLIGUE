@@ -1,0 +1,274 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e5]:
+        - link "RestoCRM" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e9]: RestoCRM
+        - generic [ref=e11]:
+          - link "Características" [ref=e12] [cursor=pointer]:
+            - /url: "#features"
+          - link "Beneficios" [ref=e13] [cursor=pointer]:
+            - /url: "#benefits"
+          - link "Testimonios" [ref=e14] [cursor=pointer]:
+            - /url: "#testimonials"
+          - link "Precios" [ref=e15] [cursor=pointer]:
+            - /url: "#pricing"
+        - generic [ref=e16]:
+          - link "Iniciar Sesión" [ref=e17] [cursor=pointer]:
+            - /url: /login
+            - button "Iniciar Sesión" [ref=e18]
+          - link "Registrarse" [ref=e19] [cursor=pointer]:
+            - /url: /register
+            - button "Registrarse" [ref=e20]
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - heading "Gestiona tu restaurante con inteligencia" [level=1] [ref=e24]
+        - paragraph [ref=e25]: El sistema CRM diseñado específicamente para restaurantes. Optimiza reservas, gestiona mesas y mejora la experiencia de tus clientes.
+        - generic [ref=e26]:
+          - link "Comenzar Gratis" [ref=e27] [cursor=pointer]:
+            - /url: /register
+            - button "Comenzar Gratis" [ref=e28]
+          - link "Ver Demo" [ref=e29] [cursor=pointer]:
+            - /url: "#demo"
+            - button "Ver Demo" [ref=e30]
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - generic [ref=e33]: 500+
+          - generic [ref=e34]: Restaurantes confían en nosotros
+        - generic [ref=e35]:
+          - generic [ref=e36]: 50K+
+          - generic [ref=e37]: Reservas gestionadas mensualmente
+        - generic [ref=e38]:
+          - generic [ref=e39]: 98%
+          - generic [ref=e40]: Satisfacción del cliente
+    - generic [ref=e42]:
+      - generic [ref=e43]:
+        - heading "Características potentes para tu restaurante" [level=2] [ref=e44]
+        - paragraph [ref=e45]: Todo lo que necesitas para gestionar tu restaurante de manera eficiente
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - img [ref=e49]
+          - heading "Gestión de Reservas" [level=3] [ref=e51]
+          - paragraph [ref=e52]: Sistema completo de reservas con calendario visual, confirmaciones automáticas y gestión de lista de espera.
+        - generic [ref=e53]:
+          - img [ref=e55]
+          - heading "Gestión de Mesas" [level=3] [ref=e57]
+          - paragraph [ref=e58]: Visualización en tiempo real del estado de las mesas, asignación inteligente y optimización del espacio.
+        - generic [ref=e59]:
+          - img [ref=e61]
+          - heading "Gestión de Clientes" [level=3] [ref=e63]
+          - paragraph [ref=e64]: Base de datos completa de clientes con historial de visitas, preferencias y programas de lealtad.
+        - generic [ref=e65]:
+          - img [ref=e67]
+          - heading "Análisis y Reportes" [level=3] [ref=e69]
+          - paragraph [ref=e70]: Estadísticas detalladas sobre ocupación, ingresos, clientes frecuentes y tendencias del negocio.
+        - generic [ref=e71]:
+          - img [ref=e73]
+          - heading "Notificaciones Automáticas" [level=3] [ref=e75]
+          - paragraph [ref=e76]: Confirmaciones de reserva, recordatorios y seguimiento post-visita vía SMS o email.
+        - generic [ref=e77]:
+          - img [ref=e79]
+          - heading "Seguridad y Confianza" [level=3] [ref=e81]
+          - paragraph [ref=e82]: Datos encriptados, copias de seguridad automáticas y acceso seguro para tu equipo.
+    - generic [ref=e84]:
+      - generic [ref=e85]:
+        - heading "Beneficios que transforman tu negocio" [level=2] [ref=e86]
+        - paragraph [ref=e87]: No solo es un software, es una solución completa para hacer crecer tu restaurante
+      - generic [ref=e88]:
+        - generic [ref=e90]:
+          - generic [ref=e91]:
+            - img [ref=e94]
+            - generic [ref=e96]:
+              - heading "Aumenta la Ocupación" [level=3] [ref=e97]
+              - paragraph [ref=e98]: Optimiza la capacidad de tu restaurante con gestión inteligente de mesas y reducción de no-shows.
+          - generic [ref=e99]:
+            - img [ref=e102]
+            - generic [ref=e104]:
+              - heading "Mejora la Experiencia del Cliente" [level=3] [ref=e105]
+              - paragraph [ref=e106]: Servicio personalizado con historial de preferencias y atención especial para clientes frecuentes.
+          - generic [ref=e107]:
+            - img [ref=e110]
+            - generic [ref=e112]:
+              - heading "Ahorra Tiempo y Recursos" [level=3] [ref=e113]
+              - paragraph [ref=e114]: Automatiza tareas repetitivas y reduce la carga administrativa para que te enfoques en lo importante.
+          - generic [ref=e115]:
+            - img [ref=e118]
+            - generic [ref=e120]:
+              - heading "Decisiones Informadas" [level=3] [ref=e121]
+              - paragraph [ref=e122]: Accede a análisis detallados para tomar decisiones estratégicas basadas en datos reales.
+        - generic [ref=e125]:
+          - img [ref=e127]
+          - heading "Demo Interactiva" [level=3] [ref=e130]
+          - paragraph [ref=e131]: Explora todas las características con una demo guiada
+          - button "Ver Demo en Vivo" [ref=e132] [cursor=pointer]
+    - generic [ref=e134]:
+      - generic [ref=e135]:
+        - heading "Lo que dicen nuestros clientes" [level=2] [ref=e136]
+        - paragraph [ref=e137]: Restaurantes que ya transformaron su operación con RestoCRM
+      - generic [ref=e138]:
+        - generic [ref=e139]:
+          - generic [ref=e140]:
+            - generic [ref=e142]: MC
+            - generic [ref=e143]:
+              - heading "María Castillo" [level=4] [ref=e144]
+              - paragraph [ref=e145]: Restaurante El Sabor
+          - generic [ref=e146]:
+            - img [ref=e147]
+            - img [ref=e149]
+            - img [ref=e151]
+            - img [ref=e153]
+            - img [ref=e155]
+          - paragraph [ref=e157]: "\"RestoCRM ha transformado completamente cómo gestionamos nuestras reservas. Hemos reducido los no-shows en un 40% y aumentado la satisfacción de nuestros clientes.\""
+        - generic [ref=e158]:
+          - generic [ref=e159]:
+            - generic [ref=e161]: JR
+            - generic [ref=e162]:
+              - heading "Juan Rodríguez" [level=4] [ref=e163]
+              - paragraph [ref=e164]: Bistró Moderno
+          - generic [ref=e165]:
+            - img [ref=e166]
+            - img [ref=e168]
+            - img [ref=e170]
+            - img [ref=e172]
+            - img [ref=e174]
+          - paragraph [ref=e176]: "\"La gestión de mesas es increíblemente intuitiva. Nuestro equipo se adaptó en menos de una semana y ahora podemos atender más clientes con el mismo personal.\""
+        - generic [ref=e177]:
+          - generic [ref=e178]:
+            - generic [ref=e180]: AM
+            - generic [ref=e181]:
+              - heading "Ana Martínez" [level=4] [ref=e182]
+              - paragraph [ref=e183]: La Cocina de Ana
+          - generic [ref=e184]:
+            - img [ref=e185]
+            - img [ref=e187]
+            - img [ref=e189]
+            - img [ref=e191]
+            - img [ref=e193]
+          - paragraph [ref=e195]: "\"Los análisis y reportes nos han ayudado a identificar nuestros platos más rentables y optimizar el menú. Nuevos ingresos han aumentado un 25%.\""
+    - generic [ref=e197]:
+      - generic [ref=e198]:
+        - heading "Planes adaptados a tu restaurante" [level=2] [ref=e199]
+        - paragraph [ref=e200]: Elige el plan perfecto según el tamaño y necesidades de tu negocio
+      - generic [ref=e201]:
+        - generic [ref=e202]:
+          - heading "Básico" [level=3] [ref=e203]
+          - paragraph [ref=e204]: Perfecto para restaurantes pequeños
+          - generic [ref=e205]: €29/mes
+          - list [ref=e206]:
+            - listitem [ref=e207]:
+              - img [ref=e208]
+              - generic [ref=e210]: Hasta 50 reservas/mes
+            - listitem [ref=e211]:
+              - img [ref=e212]
+              - generic [ref=e214]: Gestión de mesas básica
+            - listitem [ref=e215]:
+              - img [ref=e216]
+              - generic [ref=e218]: Base de clientes
+            - listitem [ref=e219]:
+              - img [ref=e220]
+              - generic [ref=e222]: Reportes básicos
+          - button "Comenzar Prueba" [ref=e223] [cursor=pointer]
+        - generic [ref=e224]:
+          - generic [ref=e225]: Popular
+          - heading "Profesional" [level=3] [ref=e226]
+          - paragraph [ref=e227]: Ideal para restaurantes en crecimiento
+          - generic [ref=e228]: €59/mes
+          - list [ref=e229]:
+            - listitem [ref=e230]:
+              - img [ref=e231]
+              - generic [ref=e233]: Reservas ilimitadas
+            - listitem [ref=e234]:
+              - img [ref=e235]
+              - generic [ref=e237]: Gestión avanzada de mesas
+            - listitem [ref=e238]:
+              - img [ref=e239]
+              - generic [ref=e241]: CRM completo
+            - listitem [ref=e242]:
+              - img [ref=e243]
+              - generic [ref=e245]: Análisis avanzados
+            - listitem [ref=e246]:
+              - img [ref=e247]
+              - generic [ref=e249]: Notificaciones automáticas
+          - button "Comenzar Prueba" [ref=e250] [cursor=pointer]
+        - generic [ref=e251]:
+          - heading "Enterprise" [level=3] [ref=e252]
+          - paragraph [ref=e253]: Para grupos y cadenas de restaurantes
+          - generic [ref=e254]: €99/mes
+          - list [ref=e255]:
+            - listitem [ref=e256]:
+              - img [ref=e257]
+              - generic [ref=e259]: Todo el plan Profesional
+            - listitem [ref=e260]:
+              - img [ref=e261]
+              - generic [ref=e263]: Múltiples ubicaciones
+            - listitem [ref=e264]:
+              - img [ref=e265]
+              - generic [ref=e267]: API personalizada
+            - listitem [ref=e268]:
+              - img [ref=e269]
+              - generic [ref=e271]: Integraciones personalizadas
+            - listitem [ref=e272]:
+              - img [ref=e273]
+              - generic [ref=e275]: Soporte prioritario 24/7
+          - button "Contactar Ventas" [ref=e276] [cursor=pointer]
+    - generic [ref=e278]:
+      - heading "¿Listo para transformar tu restaurante?" [level=2] [ref=e279]
+      - paragraph [ref=e280]: Únete a más de 500 restaurantes que ya están optimizando su operación con RestoCRM
+      - generic [ref=e281]:
+        - link "Comenzar Prueba Gratuita" [ref=e282] [cursor=pointer]:
+          - /url: /register
+          - button "Comenzar Prueba Gratuita" [ref=e283]
+        - link "Iniciar Sesión" [ref=e284] [cursor=pointer]:
+          - /url: /login
+          - button "Iniciar Sesión" [ref=e285]
+    - contentinfo [ref=e286]:
+      - generic [ref=e287]:
+        - generic [ref=e288]:
+          - generic [ref=e289]:
+            - generic [ref=e292]: RestoCRM
+            - paragraph [ref=e293]: El sistema CRM diseñado específicamente para restaurantes modernos.
+          - generic [ref=e294]:
+            - heading "Producto" [level=4] [ref=e295]
+            - list [ref=e296]:
+              - listitem [ref=e297]:
+                - link "Características" [ref=e298] [cursor=pointer]:
+                  - /url: "#features"
+              - listitem [ref=e299]:
+                - link "Precios" [ref=e300] [cursor=pointer]:
+                  - /url: "#pricing"
+              - listitem [ref=e301]:
+                - link "Demo" [ref=e302] [cursor=pointer]:
+                  - /url: "#demo"
+          - generic [ref=e303]:
+            - heading "Soporte" [level=4] [ref=e304]
+            - list [ref=e305]:
+              - listitem [ref=e306]:
+                - link "Centro de Ayuda" [ref=e307] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e308]:
+                - link "Contacto" [ref=e309] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e310]:
+                - link "API" [ref=e311] [cursor=pointer]:
+                  - /url: "#"
+          - generic [ref=e312]:
+            - heading "Legal" [level=4] [ref=e313]
+            - list [ref=e314]:
+              - listitem [ref=e315]:
+                - link "Privacidad" [ref=e316] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e317]:
+                - link "Términos" [ref=e318] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e319]:
+                - link "Cookies" [ref=e320] [cursor=pointer]:
+                  - /url: "#"
+        - paragraph [ref=e322]: © 2024 RestoCRM. Todos los derechos reservados.
+  - button "Open Next.js Dev Tools" [ref=e328] [cursor=pointer]:
+    - img [ref=e329]
+  - alert [ref=e332]
+```

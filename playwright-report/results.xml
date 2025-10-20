@@ -1,0 +1,96 @@
+<testsuites id="" name="" tests="3" failures="2" skipped="0" errors="0" time="6.632074">
+<testsuite name="smoke\smoke-test.spec.ts" timestamp="2025-10-15T16:49:16.823Z" hostname="chromium" tests="3" failures="2" skipped="0" time="7.796" errors="0">
+<testcase name="CRM Restaurant - Smoke Test › should login and navigate to main features" classname="smoke\smoke-test.spec.ts" time="4.843">
+<failure message="smoke-test.spec.ts:4:7 should login and navigate to main features" type="FAILURE">
+<![CDATA[  [chromium] › smoke\smoke-test.spec.ts:4:7 › CRM Restaurant - Smoke Test › should login and navigate to main features 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "/dashboard"
+    Received string:    "http://localhost:3000/login"
+
+      19 |     // 5. Check we're on a protected page (either dashboard or redirected)
+      20 |     const currentUrl = page.url()
+    > 21 |     expect(currentUrl).toContain('/dashboard')
+         |                        ^
+      22 |     
+      23 |     // 6. Navigate to tables page
+      24 |     await page.goto('/tables')
+        at c:\Users\Victor\Desktop\CRM NEW\e2e\smoke\smoke-test.spec.ts:21:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\smoke-smoke-test-CRM-Resta-3a755-d-navigate-to-main-features-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\smoke-smoke-test-CRM-Resta-3a755-d-navigate-to-main-features-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\smoke-smoke-test-CRM-Resta-3a755-d-navigate-to-main-features-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\smoke-smoke-test-CRM-Resta-3a755-d-navigate-to-main-features-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\smoke-smoke-test-CRM-Resta-3a755-d-navigate-to-main-features-chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\smoke-smoke-test-CRM-Resta-3a755-d-navigate-to-main-features-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="CRM Restaurant - Smoke Test › should display landing page for non-authenticated users" classname="smoke\smoke-test.spec.ts" time="1.48">
+<failure message="smoke-test.spec.ts:45:7 should display landing page for non-authenticated users" type="FAILURE">
+<![CDATA[  [chromium] › smoke\smoke-test.spec.ts:45:7 › CRM Restaurant - Smoke Test › should display landing page for non-authenticated users 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('RestoCRM')
+    Expected: visible
+    Error: strict mode violation: getByText('RestoCRM') resolved to 6 elements:
+        1) <span class="text-xl font-bold text-gray-900">RestoCRM</span> aka getByRole('link', { name: 'RestoCRM' })
+        2) <p class="text-xl text-gray-600 max-w-3xl mx-auto">Restaurantes que ya transformaron su operación co…</p> aka getByText('Restaurantes que ya transformaron su operación con RestoCRM')
+        3) <p class="text-gray-600">"RestoCRM ha transformado completamente cómo gest…</p> aka getByText('"RestoCRM ha transformado')
+        4) <p class="text-xl text-amber-100 mb-8 max-w-3xl mx-auto">Únete a más de 500 restaurantes que ya están opti…</p> aka getByText('Únete a más de 500')
+        5) <span class="text-xl font-bold">RestoCRM</span> aka getByRole('contentinfo').getByText('RestoCRM', { exact: true })
+        6) <p>© 2024 RestoCRM. Todos los derechos reservados.</p> aka getByText('© 2024 RestoCRM. Todos los')
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByText('RestoCRM')
+
+
+      48 |     
+      49 |     // Check landing page elements
+    > 50 |     await expect(page.getByText('RestoCRM')).toBeVisible()
+         |                                              ^
+      51 |     await expect(page.getByText('Gestiona tu restaurante con')).toBeVisible()
+      52 |     
+      53 |     // Check navigation to login
+        at c:\Users\Victor\Desktop\CRM NEW\e2e\smoke\smoke-test.spec.ts:50:46
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\smoke-smoke-test-CRM-Resta-2d103-for-non-authenticated-users-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\smoke-smoke-test-CRM-Resta-2d103-for-non-authenticated-users-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\smoke-smoke-test-CRM-Resta-2d103-for-non-authenticated-users-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\smoke-smoke-test-CRM-Resta-2d103-for-non-authenticated-users-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\smoke-smoke-test-CRM-Resta-2d103-for-non-authenticated-users-chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\smoke-smoke-test-CRM-Resta-2d103-for-non-authenticated-users-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="CRM Restaurant - Smoke Test › should show login form validation" classname="smoke\smoke-test.spec.ts" time="1.473">
+</testcase>
+</testsuite>
+</testsuites>

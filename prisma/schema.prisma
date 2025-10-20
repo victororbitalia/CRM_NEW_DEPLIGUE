@@ -1,0 +1,413 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User and Authentication Models
+model User {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  password    String
+  firstName   String
+  lastName    String
+  phone       String?
+  avatar      String?
+  isActive    Boolean  @default(true)
+  isEmailVerified Boolean @default(false)
+  emailVerificationToken String?
+  passwordResetToken    String?
+  passwordResetExpires  DateTime?
+  lastLoginAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  profile     UserProfile?
+  roles       UserRole[]
+  sessions    UserSession[]
+  apiTokens   ApiToken[]
+  activityLogs ActivityLog[]
+  createdReservations Reservation[] @relation("CreatedBy")
+  updatedReservations Reservation[] @relation("UpdatedBy")
+  maintenanceRecords TableMaintenance[] @relation("MaintenanceCreatedBy")
+
+  @@map("users")
+}
+
+model UserProfile {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  bio         String?
+  preferences Json?    // Store user preferences as JSON
+  timezone    String   @default("Europe/Madrid")
+  language    String   @default("es")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_profiles")
+}
+
+model Role {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  permissions Json     // Store permissions as JSON
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  users       UserRole[]
+
+  @@map("roles")
+}
+
+model UserRole {
+  id     String @id @default(cuid())
+  userId String
+  roleId String
+  assignedBy String?
+  assignedAt DateTime @default(now())
+
+  // Relations
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, roleId])
+  @@map("user_roles")
+}
+
+model UserSession {
+  id           String   @id @default(cuid())
+  userId       String
+  token        String   @unique
+  refreshToken String?  @unique
+  userAgent    String?
+  ipAddress    String?
+  isActive     Boolean  @default(true)
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_sessions")
+}
+
+model ApiToken {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String   // User-defined name for the token
+  token       String   @unique
+  permissions Json?    // Store permissions as JSON
+  lastUsedAt  DateTime?
+  expiresAt   DateTime?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("api_tokens")
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  action    String
+  resource  String?
+  resourceId String?
+  metadata  Json?    // Store additional metadata
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  // Relations
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@map("activity_logs")
+}
+
+// Restaurant Management Models
+model Restaurant {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  address     String
+  city        String
+  state       String?
+  postalCode  String?
+  country     String @default("Spain")
+  phone       String
+  email       String
+  website     String?
+  logo        String?
+  timezone    String   @default("Europe/Madrid")
+  currency    String   @default("EUR")
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  operatingHours OperatingHour[]
+  areas          Area[]
+  settings       RestaurantSettings?
+  businessRules  BusinessRule[]
+
+  @@map("restaurants")
+}
+
+model OperatingHour {
+  id           String   @id @default(cuid())
+  restaurantId String
+  dayOfWeek    Int      // 0 = Sunday, 1 = Monday, etc.
+  openTime     String   // Format: "HH:MM"
+  closeTime    String   // Format: "HH:MM"
+  isClosed     Boolean  @default(false)
+  isSpecialDay Boolean  @default(false)
+  specialDate  DateTime? // For special holidays/events
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  @@unique([restaurantId, dayOfWeek, specialDate])
+  @@map("operating_hours")
+}
+
+model RestaurantSettings {
+  id                           String   @id @default(cuid())
+  restaurantId                 String   @unique
+  language                     String   @default("es")
+  dateFormat                   String   @default("DD/MM/YYYY")
+  timeFormat                   String   @default("24h")
+  defaultReservationDuration   Int      @default(120) // in minutes
+  maxAdvanceBookingDays        Int      @default(30)
+  minAdvanceBookingHours       Int      @default(2)
+  maxPartySize                 Int      @default(20)
+  enableOnlineBookings         Boolean  @default(true)
+  enableWaitlist               Boolean  @default(true)
+  confirmationEmailEnabled     Boolean  @default(true)
+  reminderEmailEnabled         Boolean  @default(true)
+  reminderEmailHoursBefore     Int      @default(24)
+  cancellationEmailEnabled     Boolean  @default(true)
+  autoCancelNoShowMinutes      Int      @default(15)
+  emailNotifications           Json?    // Store email notification settings
+  smsNotifications             Json?    // Store SMS notification settings
+  createdAt                    DateTime @default(now())
+  updatedAt                    DateTime @updatedAt
+
+  // Relations
+  restaurant                   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  @@map("restaurant_settings")
+}
+
+model BusinessRule {
+  id           String   @id @default(cuid())
+  restaurantId String
+  name         String
+  description  String?
+  ruleType     String   // e.g., "CANCELLATION_POLICY", "NO_SHOW_POLICY", "BOOKING_LIMITS"
+  conditions   Json     // Store rule conditions as JSON
+  actions      Json     // Store rule actions as JSON
+  isActive     Boolean  @default(true)
+  priority     Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  @@map("business_rules")
+}
+
+// Table Management Models
+model Area {
+  id           String   @id @default(cuid())
+  restaurantId String
+  name         String
+  description  String?
+  maxCapacity  Int
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  tables       Table[]
+  waitlistEntries WaitlistEntry[]
+
+  @@map("areas")
+}
+
+model Table {
+  id          String   @id @default(cuid())
+  areaId      String
+  number      String
+  capacity    Int
+  minCapacity Int      @default(1)
+  positionX   Float?   // For layout visualization
+  positionY   Float?   // For layout visualization
+  width       Float?   // For layout visualization
+  height      Float?   // For layout visualization
+  shape       String?  // For layout visualization (e.g., "rectangle", "circle")
+  isAccessible Boolean @default(false)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  area        Area @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  reservations Reservation[]
+  maintenanceRecords TableMaintenance[]
+
+  @@unique([areaId, number])
+  @@map("tables")
+}
+
+model TableMaintenance {
+  id          String   @id @default(cuid())
+  tableId     String
+  reason      String
+  scheduledStart DateTime
+  scheduledEnd   DateTime
+  actualStart    DateTime?
+  actualEnd      DateTime?
+  status      String   // "scheduled", "in_progress", "completed", "cancelled"
+  notes       String?
+  createdById String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  table       Table @relation(fields: [tableId], references: [id], onDelete: Cascade)
+  createdBy   User? @relation("MaintenanceCreatedBy", fields: [createdById], references: [id])
+
+  @@map("table_maintenance")
+}
+
+// Reservation System Models
+model Customer {
+  id          String   @id @default(cuid())
+  firstName   String
+  lastName    String
+  email       String
+  phone       String?
+  address     String?
+  city        String?
+  postalCode  String?
+  country     String?
+  dateOfBirth DateTime?
+  preferences Json?    // Store customer preferences
+  notes       String?
+  isVip       Boolean  @default(false)
+  isBlacklisted Boolean @default(false)
+  blacklistReason String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  reservations Reservation[]
+  waitlistEntries WaitlistEntry[]
+
+  @@unique([email])
+  @@map("customers")
+}
+
+model Reservation {
+  id               String   @id @default(cuid())
+  customerId       String
+  tableId          String?
+  areaId           String?
+  date             DateTime
+  startTime        DateTime
+  endTime          DateTime
+  partySize        Int
+  status           String   @default("pending") // pending, confirmed, seated, completed, cancelled, no_show
+  specialRequests  String?
+  occasion         String?  // e.g., "birthday", "anniversary", "business"
+  source           String   @default("manual") // manual, online, phone, walk_in
+  notes            String?
+  depositAmount    Float?
+  depositPaid      Boolean  @default(false)
+  isWaitlist       Boolean  @default(false)
+  createdById      String?
+  updatedById      String?
+  confirmedAt      DateTime?
+  seatedAt         DateTime?
+  completedAt      DateTime?
+  cancelledAt      DateTime?
+  cancellationReason String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Relations
+  customer         Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  table            Table?   @relation(fields: [tableId], references: [id], onDelete: SetNull)
+  createdBy        User?    @relation("CreatedBy", fields: [createdById], references: [id])
+  updatedBy        User?    @relation("UpdatedBy", fields: [updatedById], references: [id])
+  notifications    ReservationNotification[]
+
+  @@map("reservations")
+}
+
+model WaitlistEntry {
+  id          String   @id @default(cuid())
+  customerId  String
+  restaurantId String
+  date        DateTime
+  partySize   Int
+  preferredTime String? // Format: "HH:MM"
+  areaId      String?
+  specialRequests String?
+  status      String   @default("waiting") // waiting, offered, declined, expired
+  priority    Int      @default(0)
+  offeredAt   DateTime?
+  expiresAt   DateTime
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  customer    Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  area        Area?    @relation(fields: [areaId], references: [id], onDelete: SetNull)
+
+  @@map("waitlist_entries")
+}
+
+model ReservationNotification {
+  id            String   @id @default(cuid())
+  reservationId String
+  type          String   // confirmation, reminder, cancellation, etc.
+  channel       String   // email, sms, push
+  recipient     String
+  subject       String?
+  content       String
+  status        String   @default("pending") // pending, sent, failed
+  sentAt        DateTime?
+  error         String?
+  retryCount    Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+
+  @@map("reservation_notifications")
+}

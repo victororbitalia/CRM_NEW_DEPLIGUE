@@ -1,0 +1,344 @@
+{
+  "config": {
+    "configFile": "c:\\Users\\Victor\\Desktop\\CRM NEW\\playwright.config.ts",
+    "rootDir": "c:/Users/Victor/Desktop/CRM NEW/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": "c:\\Users\\Victor\\Desktop\\CRM NEW\\e2e\\global-setup.ts",
+    "globalTeardown": "c:\\Users\\Victor\\Desktop\\CRM NEW\\e2e\\global-teardown.ts",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 3
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "playwright-report/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "playwright-report/results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "c:/Users/Victor/Desktop/CRM NEW/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "c:/Users/Victor/Desktop/CRM NEW/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "c:/Users/Victor/Desktop/CRM NEW/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "c:/Users/Victor/Desktop/CRM NEW/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "c:/Users/Victor/Desktop/CRM NEW/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "c:/Users/Victor/Desktop/CRM NEW/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "c:/Users/Victor/Desktop/CRM NEW/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "c:/Users/Victor/Desktop/CRM NEW/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "c:/Users/Victor/Desktop/CRM NEW/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "Mobile Safari",
+        "name": "Mobile Safari",
+        "testDir": "c:/Users/Victor/Desktop/CRM NEW/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.0",
+    "workers": 6,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://localhost:3000",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "smoke\\smoke-test.spec.ts",
+      "file": "smoke/smoke-test.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "CRM Restaurant - Smoke Test",
+          "file": "smoke/smoke-test.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should login and navigate to main features",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 4843,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"/dashboard\"\u001b[39m\nReceived string:    \u001b[31m\"http://localhost:3000/login\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"/dashboard\"\u001b[39m\nReceived string:    \u001b[31m\"http://localhost:3000/login\"\u001b[39m\n    at c:\\Users\\Victor\\Desktop\\CRM NEW\\e2e\\smoke\\smoke-test.spec.ts:21:24",
+                        "location": {
+                          "file": "c:\\Users\\Victor\\Desktop\\CRM NEW\\e2e\\smoke\\smoke-test.spec.ts",
+                          "column": 24,
+                          "line": 21
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 19 |\u001b[39m     \u001b[90m// 5. Check we're on a protected page (either dashboard or redirected)\u001b[39m\n \u001b[90m 20 |\u001b[39m     \u001b[36mconst\u001b[39m currentUrl \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39murl()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 21 |\u001b[39m     expect(currentUrl)\u001b[33m.\u001b[39mtoContain(\u001b[32m'/dashboard'\u001b[39m)\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 22 |\u001b[39m     \n \u001b[90m 23 |\u001b[39m     \u001b[90m// 6. Navigate to tables page\u001b[39m\n \u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/tables'\u001b[39m)\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "c:\\Users\\Victor\\Desktop\\CRM NEW\\e2e\\smoke\\smoke-test.spec.ts",
+                            "column": 24,
+                            "line": 21
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"/dashboard\"\u001b[39m\nReceived string:    \u001b[31m\"http://localhost:3000/login\"\u001b[39m\n\n  19 |     // 5. Check we're on a protected page (either dashboard or redirected)\n  20 |     const currentUrl = page.url()\n> 21 |     expect(currentUrl).toContain('/dashboard')\n     |                        ^\n  22 |     \n  23 |     // 6. Navigate to tables page\n  24 |     await page.goto('/tables')\n    at c:\\Users\\Victor\\Desktop\\CRM NEW\\e2e\\smoke\\smoke-test.spec.ts:21:24"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-15T16:49:17.840Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "c:\\Users\\Victor\\Desktop\\CRM NEW\\test-results\\smoke-smoke-test-CRM-Resta-3a755-d-navigate-to-main-features-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "c:\\Users\\Victor\\Desktop\\CRM NEW\\test-results\\smoke-smoke-test-CRM-Resta-3a755-d-navigate-to-main-features-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "c:\\Users\\Victor\\Desktop\\CRM NEW\\test-results\\smoke-smoke-test-CRM-Resta-3a755-d-navigate-to-main-features-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "c:\\Users\\Victor\\Desktop\\CRM NEW\\e2e\\smoke\\smoke-test.spec.ts",
+                        "column": 24,
+                        "line": 21
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba43638454f8756b3f98-3920b879dd2c49692aad",
+              "file": "smoke/smoke-test.spec.ts",
+              "line": 4,
+              "column": 7
+            },
+            {
+              "title": "should display landing page for non-authenticated users",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 1480,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('RestoCRM')\nExpected: visible\nError: strict mode violation: getByText('RestoCRM') resolved to 6 elements:\n    1) <span class=\"text-xl font-bold text-gray-900\">RestoCRM</span> aka getByRole('link', { name: 'RestoCRM' })\n    2) <p class=\"text-xl text-gray-600 max-w-3xl mx-auto\">Restaurantes que ya transformaron su operación co…</p> aka getByText('Restaurantes que ya transformaron su operación con RestoCRM')\n    3) <p class=\"text-gray-600\">\"RestoCRM ha transformado completamente cómo gest…</p> aka getByText('\"RestoCRM ha transformado')\n    4) <p class=\"text-xl text-amber-100 mb-8 max-w-3xl mx-auto\">Únete a más de 500 restaurantes que ya están opti…</p> aka getByText('Únete a más de 500')\n    5) <span class=\"text-xl font-bold\">RestoCRM</span> aka getByRole('contentinfo').getByText('RestoCRM', { exact: true })\n    6) <p>© 2024 RestoCRM. Todos los derechos reservados.</p> aka getByText('© 2024 RestoCRM. Todos los')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('RestoCRM')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('RestoCRM')\nExpected: visible\nError: strict mode violation: getByText('RestoCRM') resolved to 6 elements:\n    1) <span class=\"text-xl font-bold text-gray-900\">RestoCRM</span> aka getByRole('link', { name: 'RestoCRM' })\n    2) <p class=\"text-xl text-gray-600 max-w-3xl mx-auto\">Restaurantes que ya transformaron su operación co…</p> aka getByText('Restaurantes que ya transformaron su operación con RestoCRM')\n    3) <p class=\"text-gray-600\">\"RestoCRM ha transformado completamente cómo gest…</p> aka getByText('\"RestoCRM ha transformado')\n    4) <p class=\"text-xl text-amber-100 mb-8 max-w-3xl mx-auto\">Únete a más de 500 restaurantes que ya están opti…</p> aka getByText('Únete a más de 500')\n    5) <span class=\"text-xl font-bold\">RestoCRM</span> aka getByRole('contentinfo').getByText('RestoCRM', { exact: true })\n    6) <p>© 2024 RestoCRM. Todos los derechos reservados.</p> aka getByText('© 2024 RestoCRM. Todos los')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('RestoCRM')\u001b[22m\n\n    at c:\\Users\\Victor\\Desktop\\CRM NEW\\e2e\\smoke\\smoke-test.spec.ts:50:46",
+                        "location": {
+                          "file": "c:\\Users\\Victor\\Desktop\\CRM NEW\\e2e\\smoke\\smoke-test.spec.ts",
+                          "column": 46,
+                          "line": 50
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 48 |\u001b[39m     \n \u001b[90m 49 |\u001b[39m     \u001b[90m// Check landing page elements\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 50 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m'RestoCRM'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 51 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m'Gestiona tu restaurante con'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 52 |\u001b[39m     \n \u001b[90m 53 |\u001b[39m     \u001b[90m// Check navigation to login\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "c:\\Users\\Victor\\Desktop\\CRM NEW\\e2e\\smoke\\smoke-test.spec.ts",
+                            "column": 46,
+                            "line": 50
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('RestoCRM')\nExpected: visible\nError: strict mode violation: getByText('RestoCRM') resolved to 6 elements:\n    1) <span class=\"text-xl font-bold text-gray-900\">RestoCRM</span> aka getByRole('link', { name: 'RestoCRM' })\n    2) <p class=\"text-xl text-gray-600 max-w-3xl mx-auto\">Restaurantes que ya transformaron su operación co…</p> aka getByText('Restaurantes que ya transformaron su operación con RestoCRM')\n    3) <p class=\"text-gray-600\">\"RestoCRM ha transformado completamente cómo gest…</p> aka getByText('\"RestoCRM ha transformado')\n    4) <p class=\"text-xl text-amber-100 mb-8 max-w-3xl mx-auto\">Únete a más de 500 restaurantes que ya están opti…</p> aka getByText('Únete a más de 500')\n    5) <span class=\"text-xl font-bold\">RestoCRM</span> aka getByRole('contentinfo').getByText('RestoCRM', { exact: true })\n    6) <p>© 2024 RestoCRM. Todos los derechos reservados.</p> aka getByText('© 2024 RestoCRM. Todos los')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('RestoCRM')\u001b[22m\n\n\n  48 |     \n  49 |     // Check landing page elements\n> 50 |     await expect(page.getByText('RestoCRM')).toBeVisible()\n     |                                              ^\n  51 |     await expect(page.getByText('Gestiona tu restaurante con')).toBeVisible()\n  52 |     \n  53 |     // Check navigation to login\n    at c:\\Users\\Victor\\Desktop\\CRM NEW\\e2e\\smoke\\smoke-test.spec.ts:50:46"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-15T16:49:17.852Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "c:\\Users\\Victor\\Desktop\\CRM NEW\\test-results\\smoke-smoke-test-CRM-Resta-2d103-for-non-authenticated-users-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "c:\\Users\\Victor\\Desktop\\CRM NEW\\test-results\\smoke-smoke-test-CRM-Resta-2d103-for-non-authenticated-users-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "c:\\Users\\Victor\\Desktop\\CRM NEW\\test-results\\smoke-smoke-test-CRM-Resta-2d103-for-non-authenticated-users-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "c:\\Users\\Victor\\Desktop\\CRM NEW\\e2e\\smoke\\smoke-test.spec.ts",
+                        "column": 46,
+                        "line": 50
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ba43638454f8756b3f98-fb36f381d5c2a03f18f3",
+              "file": "smoke/smoke-test.spec.ts",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "should show login form validation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1473,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-15T16:49:17.847Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ba43638454f8756b3f98-60aec18e38fe0a362aa8",
+              "file": "smoke/smoke-test.spec.ts",
+              "line": 58,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-10-15T16:49:16.319Z",
+    "duration": 6632.0740000000005,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}
