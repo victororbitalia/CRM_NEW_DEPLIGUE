@@ -6,7 +6,8 @@ WORKDIR /app
 
 # Copiar archivos de paquetes
 COPY package.json package-lock.json ./
-RUN npm ci --only=production && npm cache clean --force
+# Instalar todas las dependencias (incluyendo las de desarrollo necesarias para el build)
+RUN npm ci && npm cache clean --force
 
 # Stage 2: Construir la aplicación
 FROM node:20-alpine AS builder
@@ -22,6 +23,9 @@ RUN npx prisma generate
 # Construir aplicación
 ENV NEXT_TELEMETRY_DISABLED 1
 RUN npm run build
+
+# Limpiar dependencias de desarrollo después del build
+RUN npm prune --production
 
 # Stage 3: Imagen de producción optimizada para Easypanel
 FROM node:20-alpine AS runner
