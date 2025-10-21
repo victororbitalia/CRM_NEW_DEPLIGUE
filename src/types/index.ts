@@ -117,6 +117,20 @@ export interface CreateTableData {
   location: TableLocation;
 }
 
+export interface CreateAreaData {
+  name: string;
+  description?: string;
+  maxCapacity: number;
+  isActive?: boolean;
+}
+
+export interface UpdateAreaData {
+  name?: string;
+  description?: string;
+  maxCapacity?: number;
+  isActive?: boolean;
+}
+
 export interface UpdateRestaurantData {
   name?: string;
   address?: string;
