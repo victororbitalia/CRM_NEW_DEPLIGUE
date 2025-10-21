@@ -21,7 +21,7 @@ COPY . .
 RUN npx prisma generate
 
 # Construir aplicación
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
 # Limpiar dependencias de desarrollo después del build

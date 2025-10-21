@@ -131,6 +131,20 @@ export interface UpdateAreaData {
   isActive?: boolean;
 }
 
+export interface CreateOperatingHourData {
+  dayOfWeek: string; // 'monday', 'tuesday', etc.
+  openTime: string;   // formato 'HH:mm'
+  closeTime: string;  // formato 'HH:mm'
+  isClosed?: boolean; // opcional, para días cerrados
+}
+
+export interface UpdateOperatingHourData {
+  dayOfWeek?: string;
+  openTime?: string;
+  closeTime?: string;
+  isClosed?: boolean;
+}
+
 export interface UpdateRestaurantData {
   name?: string;
   address?: string;
