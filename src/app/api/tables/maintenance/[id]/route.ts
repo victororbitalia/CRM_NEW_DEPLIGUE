@@ -5,7 +5,7 @@ import { db } from '@/lib/db';
 // GET /api/tables/maintenance/[id] - Obtener un registro de mantenimiento específico
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const authResult = await withAuth(request);
@@ -16,7 +16,7 @@ export async function GET(
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     // Obtener registro de mantenimiento
     const maintenance = await db.prisma.tableMaintenance.findUnique({
@@ -60,7 +60,7 @@ export async function GET(
 // PUT /api/tables/maintenance/[id] - Actualizar un registro de mantenimiento
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const authResult = await withAuth(request);
@@ -71,7 +71,7 @@ export async function PUT(
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
     const {
       reason,
@@ -174,7 +174,7 @@ export async function PUT(
 // DELETE /api/tables/maintenance/[id] - Eliminar un registro de mantenimiento
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const authResult = await withAuth(request);
@@ -185,7 +185,7 @@ export async function DELETE(
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     // Verificar que el registro exista
     const existingMaintenance = await db.prisma.tableMaintenance.findUnique({

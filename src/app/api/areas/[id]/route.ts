@@ -5,7 +5,7 @@ import { db } from '@/lib/db';
 // GET /api/areas/[id] - Obtener un área específica
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const authResult = await withAuth(request);
@@ -16,7 +16,7 @@ export async function GET(
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     // Obtener área con información detallada
     const area = await db.prisma.area.findUnique({
@@ -172,7 +172,7 @@ export async function GET(
 // PUT /api/areas/[id] - Actualizar un área
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const authResult = await withAuth(request);
@@ -183,7 +183,7 @@ export async function PUT(
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
     const {
       name,
@@ -253,7 +253,7 @@ export async function PUT(
 // DELETE /api/areas/[id] - Eliminar un área
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const authResult = await withAuth(request);
@@ -264,7 +264,7 @@ export async function DELETE(
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     // Verificar que el área exista
     const existingArea = await db.prisma.area.findUnique({
