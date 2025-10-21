@@ -132,17 +132,21 @@ export interface UpdateAreaData {
 }
 
 export interface CreateOperatingHourData {
-  dayOfWeek: string; // 'monday', 'tuesday', etc.
+  dayOfWeek: number; // 0-6, where 0 is Sunday
   openTime: string;   // formato 'HH:mm'
   closeTime: string;  // formato 'HH:mm'
   isClosed?: boolean; // opcional, para días cerrados
+  specialDate?: Date; // opcional, para días especiales
+  isSpecialDay?: boolean; // opcional, para días especiales
 }
 
 export interface UpdateOperatingHourData {
-  dayOfWeek?: string;
+  dayOfWeek?: number;
   openTime?: string;
   closeTime?: string;
   isClosed?: boolean;
+  specialDate?: Date;
+  isSpecialDay?: boolean;
 }
 
 export interface UpdateRestaurantData {
