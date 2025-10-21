@@ -5,7 +5,7 @@ import { AuthService } from '@/lib/auth';
 // DELETE /api/api-tokens/[id] - Revoke an API token
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Verify authentication
@@ -21,9 +21,10 @@ export async function DELETE(
     const payload = AuthService.verifyToken(token);
 
     // Check if the token exists and belongs to the user using raw SQL
+    const { id } = await params;
     const existingToken = await db.prisma.$queryRaw`
       SELECT id FROM "api_tokens"
-      WHERE id = ${params.id} AND "userId" = ${payload.userId} AND "isActive" = true
+      WHERE id = ${id} AND "userId" = ${payload.userId} AND "isActive" = true
       LIMIT 1
     `;
 
@@ -38,7 +39,7 @@ export async function DELETE(
     await db.prisma.$queryRaw`
       UPDATE "api_tokens"
       SET "isActive" = false, "updatedAt" = NOW()
-      WHERE id = ${params.id}
+      WHERE id = ${id}
     `;
 
     return NextResponse.json({
@@ -57,7 +58,7 @@ export async function DELETE(
 // PUT /api/api-tokens/[id] - Update an API token (e.g., update last used timestamp)
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Verify authentication
@@ -73,11 +74,12 @@ export async function PUT(
     const payload = AuthService.verifyToken(token);
 
     const { name, permissions, expiresAt } = await request.json();
+    const { id } = await params;
 
     // Check if the token exists and belongs to the user using raw SQL
     const existingToken = await db.prisma.$queryRaw`
       SELECT id FROM "api_tokens"
-      WHERE id = ${params.id} AND "userId" = ${payload.userId} AND "isActive" = true
+      WHERE id = ${id} AND "userId" = ${payload.userId} AND "isActive" = true
       LIMIT 1
     `;
 
@@ -115,7 +117,7 @@ export async function PUT(
     }
 
     updateFields.push(`"updatedAt" = NOW()`);
-    updateValues.push(params.id);
+    updateValues.push(id);
 
     const updateQuery = `
       UPDATE "api_tokens"
