@@ -1,12 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { EmailVerificationForm } from '@/components/auth/EmailVerificationForm';
 
-export default function VerifyEmailPage() {
+// Componente que envuelve el formulario con Suspense
+function EmailVerificationContent() {
   const router = useRouter();
   const { isAuthenticated } = useAuth();
 
@@ -51,5 +52,17 @@ export default function VerifyEmailPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function VerifyEmailPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    }>
+      <EmailVerificationContent />
+    </Suspense>
   );
 }

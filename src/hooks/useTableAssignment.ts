@@ -13,6 +13,7 @@ export interface AssignmentRequest {
     areaId?: string;
     shape?: string;
     location?: string;
+    isAccessible?: boolean;
   };
 }
 
@@ -213,9 +214,8 @@ export const useTableAssignment = (options: UseTableAssignmentOptions = {}) => {
     }
 
     // Verificar accesibilidad
-    // Verificar accesibilidad
     const tableIsAccessible = (table as any).isAccessible || false;
-    if (preferences?.isAccessible && !((table as any).isAccessible || false)) {
+    if (preferences?.isAccessible && !tableIsAccessible) {
       return false;
     }
 
@@ -253,7 +253,7 @@ export const useTableAssignment = (options: UseTableAssignmentOptions = {}) => {
     
     // Puntuación por accesibilidad
     const accessibility = preferences?.isAccessible && ('isAccessible' in table && ((table as any).isAccessible || false)) ? 1 :
-                         (preferences?.isAccessible && (!('isAccessible' in table) || !(table.isAccessible || false))) ? 0 : 0.5;
+                         (preferences?.isAccessible && (!('isAccessible' in table) || !((table as any).isAccessible || false))) ? 0 : 0.5;
     
     return {
       capacityFit: Math.round(capacityFit * 100),
