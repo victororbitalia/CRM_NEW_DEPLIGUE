@@ -149,6 +149,22 @@ export interface UpdateOperatingHourData {
   isSpecialDay?: boolean;
 }
 
+export interface CreateBusinessRuleData {
+  ruleName: string;
+  description?: string;
+  isActive: boolean;
+  conditions?: Record<string, any>;
+  actions?: Record<string, any>;
+}
+
+export interface UpdateBusinessRuleData {
+  ruleName?: string;
+  description?: string;
+  isActive?: boolean;
+  conditions?: Record<string, any>;
+  actions?: Record<string, any>;
+}
+
 export interface UpdateRestaurantData {
   name?: string;
   address?: string;
