@@ -204,13 +204,13 @@ export default function ReservationDetail({
         
         <div className="flex gap-2">
           {onClose && (
-            <Button variant="outline" onClick={onClose}>
+            <Button variant="secondary" onClick={onClose}>
               Cerrar
             </Button>
           )}
           
           {onEdit && (
-            <Button variant="outline" onClick={() => onEdit(reservation)}>
+            <Button variant="secondary" onClick={() => onEdit(reservation)}>
               Editar
             </Button>
           )}
@@ -480,7 +480,7 @@ export default function ReservationDetail({
                 Confirmar Cancelación
                 </Button>
                 <Button
-                  variant="outline"
+                  variant="secondary"
                   onClick={() => {
                     setShowCancellationReason(false);
                     setCancellationReason('');

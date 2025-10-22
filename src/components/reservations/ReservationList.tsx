@@ -327,7 +327,7 @@ export default function ReservationList({
                         <div className="flex gap-1">
                           {onView && (
                             <Button
-                              variant="outline"
+                              variant="secondary"
                               size="sm"
                               onClick={() => onView(reservation)}
                             >
@@ -337,7 +337,7 @@ export default function ReservationList({
                           
                           {onEdit && (
                             <Button
-                              variant="outline"
+                              variant="secondary"
                               size="sm"
                               onClick={() => onEdit(reservation)}
                             >
@@ -360,7 +360,7 @@ export default function ReservationList({
                         
                         {onDelete && (
                           <Button
-                            variant="outline"
+                            variant="secondary"
                             size="sm"
                             onClick={() => handleDelete(reservation.id)}
                             className="text-error-600 border-error-200 hover:bg-error-50"

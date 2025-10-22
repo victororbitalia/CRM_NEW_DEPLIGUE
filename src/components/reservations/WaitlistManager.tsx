@@ -359,7 +359,7 @@ export default function WaitlistManager({
                 Add to Waitlist
               </Button>
               <Button
-                variant="outline"
+                variant="secondary"
                 onClick={() => setShowCreateForm(false)}
               >
                 Cancel
@@ -538,7 +538,7 @@ export default function WaitlistManager({
                           
                           {entry.status === 'waiting' && (
                             <Button
-                              variant="outline"
+                              variant="secondary"
                               size="sm"
                               onClick={() => handleUpdateStatus(entry.id, 'declined')}
                             >
@@ -548,7 +548,7 @@ export default function WaitlistManager({
                           
                           {onDelete && (
                             <Button
-                              variant="outline"
+                              variant="secondary"
                               size="sm"
                               onClick={() => handleDelete(entry.id)}
                               className="text-error-600 border-error-200 hover:bg-error-50"

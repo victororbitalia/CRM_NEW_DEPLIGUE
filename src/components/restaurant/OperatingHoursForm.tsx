@@ -73,7 +73,7 @@ export default function OperatingHoursForm({ restaurantId, onSave, onCancel }: O
               id: h.id,
               openTime: h.openTime,
               closeTime: h.closeTime,
-              isClosed: h.isClosed
+              isClosed: h.isClosed || false
             }))
           : [{ openTime: '12:00', closeTime: '16:00', isClosed: true }];
         
@@ -303,7 +303,7 @@ export default function OperatingHoursForm({ restaurantId, onSave, onCancel }: O
                       <div className="flex items-center space-x-2 pt-6">
                         <Button
                           type="button"
-                          variant={period.isClosed ? "outline" : "secondary"}
+                          variant={period.isClosed ? "secondary" : "primary"}
                           size="sm"
                           onClick={() => handleToggleClosed(daySchedule.dayOfWeek, periodIndex)}
                           disabled={isSubmitting}
@@ -330,7 +330,7 @@ export default function OperatingHoursForm({ restaurantId, onSave, onCancel }: O
                     <div className="pt-2">
                       <Button
                         type="button"
-                        variant="outline"
+                        variant="secondary"
                         size="sm"
                         onClick={() => handleAddPeriod(daySchedule.dayOfWeek)}
                         disabled={isSubmitting}
@@ -355,7 +355,7 @@ export default function OperatingHoursForm({ restaurantId, onSave, onCancel }: O
       <FormActions align="between" className="mt-8">
         <Button
           type="button"
-          variant="outline"
+          variant="secondary"
           onClick={handleCancel}
           disabled={isSubmitting}
         >

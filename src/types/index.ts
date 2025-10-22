@@ -1,3 +1,6 @@
+// Prisma generated types
+export type { BusinessRule } from '@/generated/prisma';
+
 // User types
 export interface User {
   id: string;
@@ -28,6 +31,29 @@ export interface Restaurant {
   updatedAt: Date;
 }
 
+export interface CreateRestaurantData {
+  name: string;
+  address: string;
+  phone: string;
+  email: string;
+  description?: string;
+  timezone: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
+  website?: string;
+  currency?: string;
+}
+
+export interface RestaurantWithRelations extends Restaurant {
+  settings?: any;
+  areas?: any[];
+  tables?: any[];
+  operatingHours?: any[];
+  businessRules?: any[];
+}
+
 // Table types
 export interface Table {
   id: string;
@@ -38,6 +64,17 @@ export interface Table {
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
+}
+
+// Area types
+export interface Area {
+  id: string;
+  name: string;
+  description?: string;
+  maxCapacity: number;
+  isActive: boolean;
+  createdAt: string | Date;
+  updatedAt: string | Date;
 }
 
 export enum TableLocation {
@@ -131,6 +168,19 @@ export interface UpdateAreaData {
   isActive?: boolean;
 }
 
+export interface OperatingHour {
+  id: string;
+  dayOfWeek: number; // 0-6, where 0 is Sunday
+  openTime: string;   // formato 'HH:mm'
+  closeTime: string;  // formato 'HH:mm'
+  isClosed?: boolean; // opcional, para días cerrados
+  specialDate?: Date; // opcional, para días especiales
+  isSpecialDay?: boolean; // opcional, para días especiales
+  restaurantId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export interface CreateOperatingHourData {
   dayOfWeek: number; // 0-6, where 0 is Sunday
   openTime: string;   // formato 'HH:mm'
@@ -150,19 +200,23 @@ export interface UpdateOperatingHourData {
 }
 
 export interface CreateBusinessRuleData {
-  ruleName: string;
+  name: string;
+  ruleType: string;
   description?: string;
-  isActive: boolean;
-  conditions?: Record<string, any>;
-  actions?: Record<string, any>;
+  isActive?: boolean;
+  priority?: number;
+  conditions?: Record<string, any> | null;
+  actions?: Record<string, any> | null;
 }
 
 export interface UpdateBusinessRuleData {
-  ruleName?: string;
+  name?: string;
+  ruleType?: string;
   description?: string;
   isActive?: boolean;
-  conditions?: Record<string, any>;
-  actions?: Record<string, any>;
+  priority?: number;
+  conditions?: Record<string, any> | null;
+  actions?: Record<string, any> | null;
 }
 
 export interface UpdateRestaurantData {
@@ -172,4 +226,48 @@ export interface UpdateRestaurantData {
   email?: string;
   description?: string;
   timezone?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
+  website?: string;
+  currency?: string;
+}
+
+export interface RestaurantSettings {
+  id: string;
+  language?: string;
+  dateFormat?: string;
+  timeFormat?: string;
+  defaultReservationDuration?: number;
+  maxAdvanceBookingDays?: number;
+  minAdvanceBookingHours?: number;
+  maxPartySize?: number;
+  enableOnlineBookings?: boolean;
+  enableWaitlist?: boolean;
+  confirmationEmailEnabled?: boolean;
+  reminderEmailEnabled?: boolean;
+  reminderEmailHoursBefore?: number;
+  cancellationEmailEnabled?: boolean;
+  autoCancelNoShowMinutes?: number;
+  restaurantId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface UpdateRestaurantSettingsData {
+  language?: string;
+  dateFormat?: string;
+  timeFormat?: string;
+  defaultReservationDuration?: number;
+  maxAdvanceBookingDays?: number;
+  minAdvanceBookingHours?: number;
+  maxPartySize?: number;
+  enableOnlineBookings?: boolean;
+  enableWaitlist?: boolean;
+  confirmationEmailEnabled?: boolean;
+  reminderEmailEnabled?: boolean;
+  reminderEmailHoursBefore?: number;
+  cancellationEmailEnabled?: boolean;
+  autoCancelNoShowMinutes?: number;
 }

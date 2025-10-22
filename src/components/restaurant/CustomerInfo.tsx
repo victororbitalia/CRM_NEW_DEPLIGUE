@@ -97,10 +97,10 @@ export default function CustomerInfo({
         <Button size="sm" onClick={() => onReserve?.(customer)}>
           Hacer Reserva
         </Button>
-        <Button size="sm" variant="outline" onClick={() => onViewHistory?.(customer)}>
+        <Button size="sm" variant="secondary" onClick={() => onViewHistory?.(customer)}>
           Ver Historial
         </Button>
-        <Button size="sm" variant="outline" onClick={() => onEdit?.(customer)}>
+        <Button size="sm" variant="secondary" onClick={() => onEdit?.(customer)}>
           Editar
         </Button>
       </div>

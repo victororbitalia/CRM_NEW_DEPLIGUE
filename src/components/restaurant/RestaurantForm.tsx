@@ -351,7 +351,7 @@ export default function RestaurantForm({
       <FormActions align="between" className="mt-8">
         <Button
           type="button"
-          variant="outline"
+          variant="secondary"
           onClick={handleCancel}
           disabled={isSubmitting}
         >

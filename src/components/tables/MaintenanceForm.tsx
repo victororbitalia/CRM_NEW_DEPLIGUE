@@ -376,7 +376,7 @@ const MaintenanceForm: React.FC<MaintenanceFormProps> = ({
           <FormActions align="right" className="mt-6">
             <Button
               type="button"
-              variant="outline"
+              variant="secondary"
               onClick={onCancel}
               disabled={isLoading}
             >

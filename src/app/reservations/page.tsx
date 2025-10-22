@@ -278,30 +278,29 @@ export default function ReservationsPage() {
     <ProtectedRoute>
       <Layout
         title="Gestión de Reservas"
-        subtitle="Administra las reservas de tu restaurante"
         restaurantName="Mi Restaurante"
         actions={
           <div className="flex gap-2">
             <Button
-              variant={viewMode === 'list' ? 'primary' : 'outline'}
+              variant={viewMode === 'list' ? 'primary' : 'secondary'}
               onClick={() => handleViewModeChange('list')}
             >
               Vista Lista
             </Button>
             <Button
-              variant={viewMode === 'calendar' ? 'primary' : 'outline'}
+              variant={viewMode === 'calendar' ? 'primary' : 'secondary'}
               onClick={() => handleViewModeChange('calendar')}
             >
               Calendario
             </Button>
             <Button
-              variant={viewMode === 'availability' ? 'primary' : 'outline'}
+              variant={viewMode === 'availability' ? 'primary' : 'secondary'}
               onClick={() => handleViewModeChange('availability')}
             >
               Ver Disponibilidad
             </Button>
             <Button
-              variant={viewMode === 'waitlist' ? 'primary' : 'outline'}
+              variant={viewMode === 'waitlist' ? 'primary' : 'secondary'}
               onClick={() => handleViewModeChange('waitlist')}
             >
               Lista de Espera

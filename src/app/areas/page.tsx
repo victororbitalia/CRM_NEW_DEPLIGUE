@@ -110,7 +110,6 @@ export default function AreasPage() {
     <ProtectedRoute>
       <Layout
         title="Gestión de Áreas"
-        subtitle="Administra las áreas de tu restaurante"
         restaurantName="Mi Restaurante"
         actions={
           <Button onClick={handleCreateArea}>
@@ -316,7 +315,7 @@ export default function AreasPage() {
                 <FormActions align="between">
                   <Button
                     type="button"
-                    variant="outline"
+                    variant="secondary"
                     onClick={() => setIsModalOpen(false)}
                   >
                     Cancelar

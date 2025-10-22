@@ -203,7 +203,7 @@ export const useTableAssignment = (options: UseTableAssignmentOptions = {}) => {
 
   // Verificar si una mesa es adecuada para una reserva
   const isTableSuitable = useCallback((
-    table: AssignmentTable,
+    table: AssignmentTable | any,
     partySize: number,
     preferences?: AssignmentRequest['preferences']
   ): boolean => {
@@ -213,7 +213,9 @@ export const useTableAssignment = (options: UseTableAssignmentOptions = {}) => {
     }
 
     // Verificar accesibilidad
-    if (preferences?.isAccessible && !(table.isAccessible || false)) {
+    // Verificar accesibilidad
+    const tableIsAccessible = (table as any).isAccessible || false;
+    if (preferences?.isAccessible && !((table as any).isAccessible || false)) {
       return false;
     }
 
@@ -232,7 +234,7 @@ export const useTableAssignment = (options: UseTableAssignmentOptions = {}) => {
 
   // Calcular puntuación de adecuación para una mesa
   const calculateTableScore = useCallback((
-    table: AssignmentTable,
+    table: AssignmentTable | any,
     partySize: number,
     preferences?: AssignmentRequest['preferences']
   ): AssignmentScore => {
@@ -250,8 +252,8 @@ export const useTableAssignment = (options: UseTableAssignmentOptions = {}) => {
       table.area?.name.toLowerCase().includes(preferences.location.toLowerCase()) ? 1 : 0;
     
     // Puntuación por accesibilidad
-    const accessibility = preferences?.isAccessible && (table.isAccessible || false) ? 1 :
-                         (preferences?.isAccessible && !(table.isAccessible || false) ? 0 : 0.5);
+    const accessibility = preferences?.isAccessible && ('isAccessible' in table && ((table as any).isAccessible || false)) ? 1 :
+                         (preferences?.isAccessible && (!('isAccessible' in table) || !(table.isAccessible || false))) ? 0 : 0.5;
     
     return {
       capacityFit: Math.round(capacityFit * 100),

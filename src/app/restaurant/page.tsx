@@ -121,7 +121,7 @@ export default function RestaurantPage() {
   if (loading && restaurants.length === 0) {
     return (
       <ProtectedRoute>
-        <Layout title="Gestión de Restaurantes" subtitle="Cargando...">
+        <Layout title="Gestión de Restaurantes">
           <div className="flex justify-center items-center h-64">
             <Loading size="lg" />
           </div>
@@ -134,7 +134,6 @@ export default function RestaurantPage() {
     <ProtectedRoute>
       <Layout
         title="Gestión de Restaurantes"
-        subtitle="Administra la información de tus restaurantes"
         actions={
           <Button onClick={handleCreateRestaurant}>
             Nuevo Restaurante
@@ -203,7 +202,7 @@ export default function RestaurantPage() {
                       <div className="flex justify-between items-center">
                         <Button
                           size="sm"
-                          variant="outline"
+                          variant="secondary"
                           onClick={() => handleSelectRestaurant(restaurant.id, 'profile')}
                         >
                           Ver Detalles
@@ -239,7 +238,7 @@ export default function RestaurantPage() {
             <div className="mb-6 flex items-center justify-between">
               <div className="flex items-center space-x-4">
                 <Button
-                  variant="outline"
+                  variant="secondary"
                   onClick={() => setActiveTab('list')}
                 >
                   ← Volver a la lista
@@ -251,25 +250,25 @@ export default function RestaurantPage() {
               
               <div className="flex space-x-2">
                 <Button
-                  variant={activeTab === 'profile' ? 'primary' : 'outline'}
+                  variant={activeTab === 'profile' ? 'primary' : 'secondary'}
                   onClick={() => setActiveTab('profile')}
                 >
                   Perfil
                 </Button>
                 <Button
-                  variant={activeTab === 'hours' ? 'primary' : 'outline'}
+                  variant={activeTab === 'hours' ? 'primary' : 'secondary'}
                   onClick={() => setActiveTab('hours')}
                 >
                   Horarios
                 </Button>
                 <Button
-                  variant={activeTab === 'areas' ? 'primary' : 'outline'}
+                  variant={activeTab === 'areas' ? 'primary' : 'secondary'}
                   onClick={() => setActiveTab('areas')}
                 >
                   Áreas
                 </Button>
                 <Button
-                  variant={activeTab === 'rules' ? 'primary' : 'outline'}
+                  variant={activeTab === 'rules' ? 'primary' : 'secondary'}
                   onClick={() => setActiveTab('rules')}
                 >
                   Reglas

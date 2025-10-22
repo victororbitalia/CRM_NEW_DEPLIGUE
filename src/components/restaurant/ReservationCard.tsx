@@ -104,7 +104,7 @@ export default function ReservationCard({
           <Button key="confirm" size="sm" onClick={() => onConfirm?.(reservation)}>
             Confirmar
           </Button>,
-          <Button key="edit" size="sm" variant="outline" onClick={() => onEdit?.(reservation)}>
+          <Button key="edit" size="sm" variant="secondary" onClick={() => onEdit?.(reservation)}>
             Editar
           </Button>,
           <Button key="cancel" size="sm" variant="error" onClick={() => onCancel?.(reservation)}>
@@ -117,7 +117,7 @@ export default function ReservationCard({
           <Button key="seat" size="sm" onClick={() => onSeat?.(reservation)}>
             Sentar
           </Button>,
-          <Button key="edit" size="sm" variant="outline" onClick={() => onEdit?.(reservation)}>
+          <Button key="edit" size="sm" variant="secondary" onClick={() => onEdit?.(reservation)}>
             Editar
           </Button>,
           <Button key="cancel" size="sm" variant="error" onClick={() => onCancel?.(reservation)}>
@@ -130,21 +130,21 @@ export default function ReservationCard({
           <Button key="complete" size="sm" onClick={() => onComplete?.(reservation)}>
             Completar
           </Button>,
-          <Button key="edit" size="sm" variant="outline" onClick={() => onEdit?.(reservation)}>
+          <Button key="edit" size="sm" variant="secondary" onClick={() => onEdit?.(reservation)}>
             Editar
           </Button>
         );
         break;
       case 'completed':
         actions.push(
-          <Button key="new" size="sm" variant="outline" onClick={() => onEdit?.(reservation)}>
+          <Button key="new" size="sm" variant="secondary" onClick={() => onEdit?.(reservation)}>
             Nueva Reserva
           </Button>
         );
         break;
       case 'cancelled':
         actions.push(
-          <Button key="new" size="sm" variant="outline" onClick={() => onEdit?.(reservation)}>
+          <Button key="new" size="sm" variant="secondary" onClick={() => onEdit?.(reservation)}>
             Nueva Reserva
           </Button>
         );

@@ -335,7 +335,7 @@ const TableForm: React.FC<TableFormProps> = ({
             <div className="flex space-x-2">
               <Button
                 type="button"
-                variant="outline"
+                variant="secondary"
                 onClick={onCancel}
                 disabled={isLoading}
               >

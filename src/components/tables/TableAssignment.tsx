@@ -326,7 +326,7 @@ const TableAssignment: React.FC<TableAssignmentProps> = ({
                     {onTableSelect && (
                       <Button
                         size="sm"
-                        variant="outline"
+                        variant="secondary"
                         className="mt-2 w-full"
                         onClick={() => onTableSelect(table.id)}
                       >
@@ -343,7 +343,7 @@ const TableAssignment: React.FC<TableAssignmentProps> = ({
           <div className="mt-4 flex justify-end space-x-2">
             {onTableSelect && result.table && (
               <Button
-                variant="outline"
+                variant="secondary"
                 onClick={() => onTableSelect(result.table!.id)}
               >
                 Ver detalles de la mesa

@@ -141,11 +141,14 @@ export const POST = withAuthHandler(
 
       const businessRule = await db.prisma.businessRule.create({
         data: {
-          ...ruleData,
           name: ruleData.name.trim(),
+          ruleType: ruleData.ruleType,
+          description: ruleData.description,
           restaurantId: id,
           isActive: ruleData.isActive !== undefined ? ruleData.isActive : true,
           priority: ruleData.priority !== undefined ? ruleData.priority : 0,
+          conditions: ruleData.conditions || {},
+          actions: ruleData.actions || {},
         },
       });
 
@@ -286,9 +289,14 @@ export const PUT = withAuthHandler(
           }
         }
 
-        const updateData: UpdateBusinessRuleData = {
-          ...ruleData,
+        const updateData: any = {
           ...(ruleData.name ? { name: ruleData.name.trim() } : {}),
+          ...(ruleData.ruleType ? { ruleType: ruleData.ruleType } : {}),
+          ...(ruleData.description !== undefined ? { description: ruleData.description } : {}),
+          ...(ruleData.isActive !== undefined ? { isActive: ruleData.isActive } : {}),
+          ...(ruleData.priority !== undefined ? { priority: ruleData.priority } : {}),
+          ...(ruleData.conditions !== undefined ? { conditions: ruleData.conditions || {} } : {}),
+          ...(ruleData.actions !== undefined ? { actions: ruleData.actions || {} } : {}),
         };
 
         const updatedRule = await db.prisma.businessRule.update({

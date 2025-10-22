@@ -108,27 +108,27 @@ export default function TableCard({
           <Button key="reserve" size="sm" onClick={() => onReserve?.(table)}>
             Reservar
           </Button>,
-          <Button key="edit" size="sm" variant="outline" onClick={() => onEdit?.(table)}>
+          <Button key="edit" size="sm" variant="secondary" onClick={() => onEdit?.(table)}>
             Editar
           </Button>
         );
         break;
       case 'occupied':
         actions.push(
-          <Button key="release" size="sm" variant="outline" onClick={() => onRelease?.(table)}>
+          <Button key="release" size="sm" variant="secondary" onClick={() => onRelease?.(table)}>
             Liberar
           </Button>,
-          <Button key="edit" size="sm" variant="outline" onClick={() => onEdit?.(table)}>
+          <Button key="edit" size="sm" variant="secondary" onClick={() => onEdit?.(table)}>
             Editar
           </Button>
         );
         break;
       case 'reserved':
         actions.push(
-          <Button key="release" size="sm" variant="outline" onClick={() => onRelease?.(table)}>
+          <Button key="release" size="sm" variant="secondary" onClick={() => onRelease?.(table)}>
             Liberar
           </Button>,
-          <Button key="edit" size="sm" variant="outline" onClick={() => onEdit?.(table)}>
+          <Button key="edit" size="sm" variant="secondary" onClick={() => onEdit?.(table)}>
             Editar
           </Button>
         );
@@ -138,7 +138,7 @@ export default function TableCard({
           <Button key="available" size="sm" onClick={() => onRelease?.(table)}>
             Disponible
           </Button>,
-          <Button key="edit" size="sm" variant="outline" onClick={() => onEdit?.(table)}>
+          <Button key="edit" size="sm" variant="secondary" onClick={() => onEdit?.(table)}>
             Editar
           </Button>
         );

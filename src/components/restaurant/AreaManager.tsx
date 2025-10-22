@@ -31,7 +31,7 @@ interface AreaFormData {
 }
 
 export default function AreaManager({ restaurantId, onSave }: AreaManagerProps) {
-  const { areas, loading, error, fetchAreas, createArea, updateAreas, deleteArea } = useAreas(restaurantId);
+  const { areas, isLoading, error, fetchAreas, createArea, updateArea, deleteArea } = useAreas(restaurantId);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [showModal, setShowModal] = useState(false);
@@ -47,7 +47,7 @@ export default function AreaManager({ restaurantId, onSave }: AreaManagerProps) 
 
   useEffect(() => {
     if (restaurantId) {
-      fetchAreas(restaurantId);
+      fetchAreas();
     }
   }, [restaurantId, fetchAreas]);
 
@@ -131,7 +131,7 @@ export default function AreaManager({ restaurantId, onSave }: AreaManagerProps) 
           isActive: formData.isActive,
         };
 
-        const result = await updateAreas(restaurantId, [{ ...updateData, id: editingArea.id } as AreaUpdateData]);
+        const result = await updateArea({ ...updateData, id: editingArea.id } as AreaUpdateData);
         
         if (result) {
           showSuccess('Área actualizada correctamente');
@@ -147,7 +147,7 @@ export default function AreaManager({ restaurantId, onSave }: AreaManagerProps) 
           isActive: formData.isActive,
         };
 
-        const result = await createArea(restaurantId, createData);
+        const result = await createArea({ ...createData, restaurantId });
         
         if (result) {
           showSuccess('Área creada correctamente');
@@ -169,7 +169,7 @@ export default function AreaManager({ restaurantId, onSave }: AreaManagerProps) 
     }
 
     try {
-      const success = await deleteArea(restaurantId, area.id);
+      const success = await deleteArea(area.id);
       
       if (success) {
         showSuccess('Área eliminada correctamente');
@@ -187,7 +187,7 @@ export default function AreaManager({ restaurantId, onSave }: AreaManagerProps) 
         isActive: !area.isActive,
       };
 
-      const result = await updateAreas(restaurantId, [{ ...updateData, id: area.id } as AreaUpdateData]);
+      const result = await updateArea({ ...updateData, id: area.id } as AreaUpdateData);
       
       if (result) {
         showSuccess(`Área ${area.isActive ? 'desactivada' : 'activada'} correctamente`);
@@ -199,7 +199,7 @@ export default function AreaManager({ restaurantId, onSave }: AreaManagerProps) 
     }
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="flex justify-center items-center p-8">
         <Loading size="lg" />
@@ -266,7 +266,7 @@ export default function AreaManager({ restaurantId, onSave }: AreaManagerProps) 
                   <div className="flex space-x-2">
                     <Button
                       size="sm"
-                      variant="outline"
+                      variant="secondary"
                       onClick={() => handleOpenModal(area)}
                     >
                       Editar
@@ -378,7 +378,7 @@ export default function AreaManager({ restaurantId, onSave }: AreaManagerProps) 
             <FormActions align="between">
               <Button
                 type="button"
-                variant="outline"
+                variant="secondary"
                 onClick={handleCloseModal}
                 disabled={isSubmitting}
               >

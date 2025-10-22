@@ -198,7 +198,7 @@ const TableStatus: React.FC<TableStatusProps> = ({
                 {status === 'available' && (
                   <Button
                     size="sm"
-                    variant="outline"
+                    variant="secondary"
                     onClick={() => onStatusChange(table.id, 'occupied')}
                   >
                     Marcar como ocupada
@@ -207,7 +207,7 @@ const TableStatus: React.FC<TableStatusProps> = ({
                 {status === 'occupied' && (
                   <Button
                     size="sm"
-                    variant="outline"
+                    variant="secondary"
                     onClick={() => onStatusChange(table.id, 'available')}
                   >
                     Liberar mesa
@@ -216,7 +216,7 @@ const TableStatus: React.FC<TableStatusProps> = ({
                 {status === 'reserved' && (
                   <Button
                     size="sm"
-                    variant="outline"
+                    variant="secondary"
                     onClick={() => onStatusChange(table.id, 'occupied')}
                   >
                     Sentar clientes

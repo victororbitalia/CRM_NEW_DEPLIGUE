@@ -235,7 +235,6 @@ export default function TablesPage() {
     <ProtectedRoute>
       <Layout
         title="Gestión de Mesas"
-        subtitle="Administra las mesas de tu restaurante"
         restaurantName="Mi Restaurante"
         actions={
           <div className="flex space-x-2">
@@ -254,7 +253,7 @@ export default function TablesPage() {
             </Button>
             */}
             <Button
-              variant="outline"
+              variant="secondary"
               onClick={() => window.location.href = '/areas'}
             >
               Gestionar Áreas
@@ -326,35 +325,35 @@ export default function TablesPage() {
                   <div className="flex space-x-2">
                     <Button
                       size="sm"
-                      variant={filterStatus === 'all' ? 'primary' : 'outline'}
+                      variant={filterStatus === 'all' ? 'primary' : 'secondary'}
                       onClick={() => setFilterStatus('all')}
                     >
                       Todas
                     </Button>
                     <Button
                       size="sm"
-                      variant={filterStatus === 'available' ? 'primary' : 'outline'}
+                      variant={filterStatus === 'available' ? 'primary' : 'secondary'}
                       onClick={() => setFilterStatus('available')}
                     >
                       Disponibles
                     </Button>
                     <Button
                       size="sm"
-                      variant={filterStatus === 'occupied' ? 'primary' : 'outline'}
+                      variant={filterStatus === 'occupied' ? 'primary' : 'secondary'}
                       onClick={() => setFilterStatus('occupied')}
                     >
                       Ocupadas
                     </Button>
                     <Button
                       size="sm"
-                      variant={filterStatus === 'reserved' ? 'primary' : 'outline'}
+                      variant={filterStatus === 'reserved' ? 'primary' : 'secondary'}
                       onClick={() => setFilterStatus('reserved')}
                     >
                       Reservadas
                     </Button>
                     <Button
                       size="sm"
-                      variant={filterStatus === 'maintenance' ? 'primary' : 'outline'}
+                      variant={filterStatus === 'maintenance' ? 'primary' : 'secondary'}
                       onClick={() => setFilterStatus('maintenance')}
                     >
                       Mantenimiento

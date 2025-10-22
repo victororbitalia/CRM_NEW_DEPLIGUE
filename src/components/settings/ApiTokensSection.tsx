@@ -148,7 +148,7 @@ const ApiTokensSection = () => {
                   <div className="flex items-center gap-2">
                     <Button
                       size="sm"
-                      variant="outline"
+                      variant="secondary"
                       onClick={() => {
                         showSuccess('Por seguridad, los tokens solo se muestran durante la creación. Debes crear un nuevo token si perdiste el actual.');
                       }}
@@ -197,7 +197,7 @@ const ApiTokensSection = () => {
                 </div>
                 <Button
                   type="button"
-                  variant="outline"
+                  variant="secondary"
                   onClick={() => copyTokenToClipboard(newToken)}
                   className="w-full"
                 >
@@ -241,7 +241,7 @@ const ApiTokensSection = () => {
             <FormActions align="between">
               <Button
                 type="button"
-                variant="outline"
+                variant="secondary"
                 onClick={() => {
                   setIsCreateModalOpen(false);
                   setNewToken(null);

@@ -333,7 +333,7 @@ export default function BusinessRulesForm({ restaurantId, onSave }: BusinessRule
                     <div className="flex space-x-2">
                       <Button
                         size="sm"
-                        variant="outline"
+                        variant="secondary"
                         onClick={() => handleOpenModal(rule)}
                       >
                         Editar
@@ -507,7 +507,7 @@ export default function BusinessRulesForm({ restaurantId, onSave }: BusinessRule
             <FormActions align="between">
               <Button
                 type="button"
-                variant="outline"
+                variant="secondary"
                 onClick={handleCloseModal}
                 disabled={isSubmitting}
               >

@@ -360,15 +360,15 @@ export default function ReservationCalendar({
             </div>
             
             <div className="flex items-center gap-1">
-              <Button variant="outline" size="sm" onClick={handlePrevious}>
+              <Button variant="secondary" size="sm" onClick={handlePrevious}>
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </Button>
-              <Button variant="outline" size="sm" onClick={handleToday}>
+              <Button variant="secondary" size="sm" onClick={handleToday}>
                 Today
               </Button>
-              <Button variant="outline" size="sm" onClick={handleNext}>
+              <Button variant="secondary" size="sm" onClick={handleNext}>
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>

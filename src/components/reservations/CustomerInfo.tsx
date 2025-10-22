@@ -316,7 +316,7 @@ export default function CustomerInfo({
           )}
           
           {onEdit && (
-            <Button variant="outline" onClick={handleEdit}>
+            <Button variant="secondary" onClick={handleEdit}>
               Edit Customer
             </Button>
           )}
@@ -423,7 +423,7 @@ export default function CustomerInfo({
                 <Button onClick={handleSaveEdit} disabled={isLoading}>
                   Save Changes
                 </Button>
-                <Button variant="outline" onClick={handleCancelEdit}>
+                <Button variant="secondary" onClick={handleCancelEdit}>
                   Cancel
                 </Button>
               </div>
@@ -495,7 +495,7 @@ export default function CustomerInfo({
         <CardHeader>
           <div className="flex justify-between items-center">
             <CardTitle>Notes</CardTitle>
-            <Button variant="outline" size="sm" onClick={() => setShowAddNote(!showAddNote)}>
+            <Button variant="secondary" size="sm" onClick={() => setShowAddNote(!showAddNote)}>
               {showAddNote ? 'Cancel' : 'Add Note'}
             </Button>
           </div>

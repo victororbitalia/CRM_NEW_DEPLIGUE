@@ -266,7 +266,7 @@ export default function ReservationForm({
           <FormActions>
             <Button
               type="button"
-              variant="outline"
+              variant="secondary"
               onClick={onCancel}
               disabled={isSubmitting}
             >

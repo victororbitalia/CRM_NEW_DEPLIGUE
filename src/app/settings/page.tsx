@@ -134,7 +134,7 @@ export default function SettingsPage() {
       notifications: {
         ...prev.notifications,
         [category]: {
-          ...prev.notifications[category as keyof typeof prev.notifications],
+          ...(prev.notifications[category as keyof typeof prev.notifications] as Record<string, any>),
           [key]: value,
         },
       },
@@ -154,7 +154,6 @@ export default function SettingsPage() {
     <ProtectedRoute>
       <Layout
         title="Configuración"
-        subtitle="Administra la configuración de tu restaurante"
         restaurantName="Mi Restaurante"
       >
         <div className="animate-fade-in">
@@ -197,7 +196,7 @@ export default function SettingsPage() {
                           <p className="font-medium text-secondary-900">Nombre del restaurante</p>
                           <p className="text-sm text-secondary-600">{settings.name}</p>
                         </div>
-                        <Button size="sm" variant="outline" onClick={handleEditRestaurant}>
+                        <Button size="sm" variant="secondary" onClick={handleEditRestaurant}>
                           Editar
                         </Button>
                       </div>
@@ -207,7 +206,7 @@ export default function SettingsPage() {
                           <p className="font-medium text-secondary-900">Dirección</p>
                           <p className="text-sm text-secondary-600">{settings.address}</p>
                         </div>
-                        <Button size="sm" variant="outline" onClick={handleEditRestaurant}>
+                        <Button size="sm" variant="secondary" onClick={handleEditRestaurant}>
                           Editar
                         </Button>
                       </div>
@@ -217,7 +216,7 @@ export default function SettingsPage() {
                           <p className="font-medium text-secondary-900">Teléfono</p>
                           <p className="text-sm text-secondary-600">{settings.phone}</p>
                         </div>
-                        <Button size="sm" variant="outline" onClick={handleEditRestaurant}>
+                        <Button size="sm" variant="secondary" onClick={handleEditRestaurant}>
                           Editar
                         </Button>
                       </div>
@@ -227,7 +226,7 @@ export default function SettingsPage() {
                           <p className="font-medium text-secondary-900">Email</p>
                           <p className="text-sm text-secondary-600">{settings.email}</p>
                         </div>
-                        <Button size="sm" variant="outline" onClick={handleEditRestaurant}>
+                        <Button size="sm" variant="secondary" onClick={handleEditRestaurant}>
                           Editar
                         </Button>
                       </div>
@@ -237,7 +236,7 @@ export default function SettingsPage() {
                           <p className="font-medium text-secondary-900">Sitio web</p>
                           <p className="text-sm text-secondary-600">{settings.website}</p>
                         </div>
-                        <Button size="sm" variant="outline" onClick={handleEditRestaurant}>
+                        <Button size="sm" variant="secondary" onClick={handleEditRestaurant}>
                           Editar
                         </Button>
                       </div>
@@ -245,7 +244,7 @@ export default function SettingsPage() {
                       <div className="py-3">
                         <div className="flex items-center justify-between mb-2">
                           <p className="font-medium text-secondary-900">Descripción</p>
-                          <Button size="sm" variant="outline" onClick={handleEditRestaurant}>
+                          <Button size="sm" variant="secondary" onClick={handleEditRestaurant}>
                             Editar
                           </Button>
                         </div>
@@ -609,7 +608,7 @@ export default function SettingsPage() {
                             <p className="font-medium text-secondary-900">Nombre de usuario</p>
                             <p className="text-sm text-secondary-600">admin</p>
                           </div>
-                          <Button size="sm" variant="outline">
+                          <Button size="sm" variant="secondary">
                             Editar
                           </Button>
                         </div>
@@ -619,7 +618,7 @@ export default function SettingsPage() {
                             <p className="font-medium text-secondary-900">Email</p>
                             <p className="text-sm text-secondary-600">admin@mirestaurante.com</p>
                           </div>
-                          <Button size="sm" variant="outline">
+                          <Button size="sm" variant="secondary">
                             Editar
                           </Button>
                         </div>
@@ -629,7 +628,7 @@ export default function SettingsPage() {
                             <p className="font-medium text-secondary-900">Contraseña</p>
                             <p className="text-sm text-secondary-600">********</p>
                           </div>
-                          <Button size="sm" variant="outline">
+                          <Button size="sm" variant="secondary">
                             Cambiar
                           </Button>
                         </div>
@@ -727,7 +726,7 @@ export default function SettingsPage() {
               <FormActions align="between">
                 <Button
                   type="button"
-                  variant="outline"
+                  variant="secondary"
                   onClick={() => setIsModalOpen(false)}
                 >
                   Cancelar
