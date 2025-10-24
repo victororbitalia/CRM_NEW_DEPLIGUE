@@ -15,13 +15,13 @@ async function runMigration() {
       execSync('rm -rf node_modules/.prisma/client', { stdio: 'inherit' });
       console.log('✅ Cliente Prisma existente limpiado');
       
-      // Generar cliente con binaryTargets explícitos
-      execSync('npx prisma generate --binary-target=linux-musl-openssl-3.0.x', { stdio: 'inherit' });
+      // Generar cliente con binaryTargets configurados en schema.prisma
+      execSync('npx prisma generate', { stdio: 'inherit' });
       console.log('✅ Cliente Prisma regenerado con binaryTargets para Linux');
     } catch (error) {
       console.log('⚠️ Error regenerando cliente Prisma, intentando con ruta directa...');
       try {
-        execSync('./node_modules/.bin/prisma generate --binary-target=linux-musl-openssl-3.0.x', { stdio: 'inherit' });
+        execSync('./node_modules/.bin/prisma generate', { stdio: 'inherit' });
         console.log('✅ Cliente Prisma regenerado exitosamente (ruta directa)');
       } catch (error2) {
         console.log('❌ No se pudo regenerar el cliente Prisma:', error2.message);
