@@ -8,38 +8,8 @@ async function runMigration() {
   try {
     console.log('🔄 Iniciando migración completa del CRM Restaurante...');
     
-    // Verificar si el cliente Prisma ya está generado
-    console.log('📦 Verificando cliente Prisma...');
-    const fs = require('fs');
-    const path = require('path');
-    
-    try {
-      const clientPath = path.join(__dirname, '..', 'node_modules', '.prisma', 'client', 'index.js');
-      if (fs.existsSync(clientPath)) {
-        console.log('✅ Cliente Prisma ya existe, omitiendo generación');
-      } else {
-        console.log('📦 Generando cliente Prisma...');
-        try {
-          execSync('npx prisma generate', { stdio: 'inherit' });
-        } catch (error) {
-          console.log('⚠️ Error generando cliente Prisma, intentando con prisma directamente...');
-          try {
-            execSync('./node_modules/.bin/prisma generate', { stdio: 'inherit' });
-          } catch (error2) {
-            console.log('❌ No se pudo generar el cliente Prisma:', error2.message);
-            throw error2;
-          }
-        }
-      }
-    } catch (error) {
-      console.log('⚠️ Error verificando cliente Prisma, intentando generar...');
-      try {
-        execSync('npx prisma generate', { stdio: 'inherit' });
-      } catch (error2) {
-        console.log('❌ No se pudo generar el cliente Prisma:', error2.message);
-        throw error2;
-      }
-    }
+    // Omitir generación del cliente Prisma (ya se generó durante el build)
+    console.log('✅ Cliente Prisma ya fue generado durante el build, omitiendo generación');
     
     // Verificar conexión a base de datos
     console.log('🔍 Verificando conexión a base de datos...');
