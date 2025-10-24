@@ -58,6 +58,10 @@ COPY --from=builder /app/package.json ./package.json
 # Crear directorios necesarios con permisos correctos
 RUN mkdir -p /app/public/uploads && chown nextjs:nodejs /app/public/uploads
 
+# Asegurar permisos correctos para node_modules
+RUN chown -R nextjs:nodejs /app/node_modules
+RUN chmod -R 755 /app/node_modules
+
 # Establecer permisos de usuario
 USER nextjs
 

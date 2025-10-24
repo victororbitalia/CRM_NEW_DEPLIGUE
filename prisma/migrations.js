@@ -8,14 +8,33 @@ async function runMigration() {
   try {
     console.log('🔄 Iniciando migración completa del CRM Restaurante...');
     
-    // Generar cliente Prisma primero
-    console.log('📦 Generando cliente Prisma...');
+    // Verificar si el cliente Prisma ya está generado
+    console.log('📦 Verificando cliente Prisma...');
+    const fs = require('fs');
+    const path = require('path');
+    
     try {
-      execSync('npx prisma generate', { stdio: 'inherit' });
+      const clientPath = path.join(__dirname, '..', 'node_modules', '.prisma', 'client', 'index.js');
+      if (fs.existsSync(clientPath)) {
+        console.log('✅ Cliente Prisma ya existe, omitiendo generación');
+      } else {
+        console.log('📦 Generando cliente Prisma...');
+        try {
+          execSync('npx prisma generate', { stdio: 'inherit' });
+        } catch (error) {
+          console.log('⚠️ Error generando cliente Prisma, intentando con prisma directamente...');
+          try {
+            execSync('./node_modules/.bin/prisma generate', { stdio: 'inherit' });
+          } catch (error2) {
+            console.log('❌ No se pudo generar el cliente Prisma:', error2.message);
+            throw error2;
+          }
+        }
+      }
     } catch (error) {
-      console.log('⚠️ Error generando cliente Prisma, intentando con prisma directamente...');
+      console.log('⚠️ Error verificando cliente Prisma, intentando generar...');
       try {
-        execSync('prisma generate', { stdio: 'inherit' });
+        execSync('npx prisma generate', { stdio: 'inherit' });
       } catch (error2) {
         console.log('❌ No se pudo generar el cliente Prisma:', error2.message);
         throw error2;
@@ -33,7 +52,7 @@ async function runMigration() {
     } catch (error) {
       console.log('⚠️ Error con npx prisma db push, intentando con prisma directamente...');
       try {
-        execSync('prisma db push --accept-data-loss', { stdio: 'inherit' });
+        execSync('./node_modules/.bin/prisma db push --accept-data-loss', { stdio: 'inherit' });
       } catch (error2) {
         console.log('❌ No se pudo ejecutar db push:', error2.message);
         throw error2;
@@ -47,7 +66,7 @@ async function runMigration() {
     } catch (error) {
       console.log('⚠️ Error con npx prisma migrate deploy, intentando con prisma directamente...');
       try {
-        execSync('prisma migrate deploy', { stdio: 'inherit' });
+        execSync('./node_modules/.bin/prisma migrate deploy', { stdio: 'inherit' });
       } catch (error2) {
         console.log('ℹ️ No hay migraciones pendientes o ya fueron aplicadas');
       }
@@ -75,7 +94,7 @@ async function runMigration() {
         } catch (error) {
           console.log('⚠️ Error con npx prisma db seed, intentando con prisma directamente...');
           try {
-            execSync('prisma db seed', { stdio: 'inherit' });
+            execSync('./node_modules/.bin/prisma db seed', { stdio: 'inherit' });
           } catch (error2) {
             console.log('ℹ️ Seed no ejecutado (puede ser normal):', error2.message);
           }
