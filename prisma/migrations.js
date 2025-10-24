@@ -10,7 +10,17 @@ async function runMigration() {
     
     // Generar cliente Prisma primero
     console.log('📦 Generando cliente Prisma...');
-    execSync('npx prisma generate', { stdio: 'inherit' });
+    try {
+      execSync('npx prisma generate', { stdio: 'inherit' });
+    } catch (error) {
+      console.log('⚠️ Error generando cliente Prisma, intentando con prisma directamente...');
+      try {
+        execSync('prisma generate', { stdio: 'inherit' });
+      } catch (error2) {
+        console.log('❌ No se pudo generar el cliente Prisma:', error2.message);
+        throw error2;
+      }
+    }
     
     // Verificar conexión a base de datos
     console.log('🔍 Verificando conexión a base de datos...');
@@ -18,14 +28,29 @@ async function runMigration() {
     
     // Crear tablas según el schema (db push es mejor para producción)
     console.log('🏗️ Creando/actualizando tablas según schema...');
-    execSync('npx prisma db push --accept-data-loss', { stdio: 'inherit' });
+    try {
+      execSync('npx prisma db push --accept-data-loss', { stdio: 'inherit' });
+    } catch (error) {
+      console.log('⚠️ Error con npx prisma db push, intentando con prisma directamente...');
+      try {
+        execSync('prisma db push --accept-data-loss', { stdio: 'inherit' });
+      } catch (error2) {
+        console.log('❌ No se pudo ejecutar db push:', error2.message);
+        throw error2;
+      }
+    }
     
     // Aplicar migraciones si existen
     console.log('📋 Aplicando migraciones pendientes...');
     try {
       execSync('npx prisma migrate deploy', { stdio: 'inherit' });
     } catch (error) {
-      console.log('ℹ️ No hay migraciones pendientes o ya fueron aplicadas');
+      console.log('⚠️ Error con npx prisma migrate deploy, intentando con prisma directamente...');
+      try {
+        execSync('prisma migrate deploy', { stdio: 'inherit' });
+      } catch (error2) {
+        console.log('ℹ️ No hay migraciones pendientes o ya fueron aplicadas');
+      }
     }
     
     // Verificar que las tablas se crearon correctamente
@@ -45,7 +70,16 @@ async function runMigration() {
       const userCount = await prisma.user.count();
       if (userCount === 0) {
         console.log('🌱 Ejecutando seed de datos iniciales...');
-        execSync('npx prisma db seed', { stdio: 'inherit' });
+        try {
+          execSync('npx prisma db seed', { stdio: 'inherit' });
+        } catch (error) {
+          console.log('⚠️ Error con npx prisma db seed, intentando con prisma directamente...');
+          try {
+            execSync('prisma db seed', { stdio: 'inherit' });
+          } catch (error2) {
+            console.log('ℹ️ Seed no ejecutado (puede ser normal):', error2.message);
+          }
+        }
       } else {
         console.log(`ℹ️ Base de datos ya contiene ${userCount} usuarios, omitiendo seed`);
       }

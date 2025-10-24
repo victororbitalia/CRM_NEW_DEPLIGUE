@@ -19,6 +19,7 @@
     "jsonwebtoken": "^9.0.2",
     "nanoid": "^5.0.9",
     "next": "15.5.5",
+    "prisma": "^6.17.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "tailwind-merge": "^3.3.1",
@@ -37,7 +38,6 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "prettier": "^3.6.2",
-    "prisma": "^6.17.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
