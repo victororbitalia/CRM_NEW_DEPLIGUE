@@ -8,8 +8,22 @@ async function runMigration() {
   try {
     console.log('🔄 Iniciando migración completa del CRM Restaurante...');
     
-    // Omitir generación del cliente Prisma (ya se generó durante el build)
-    console.log('✅ Cliente Prisma ya fue generado durante el build, omitiendo generación');
+    // Regenerar cliente Prisma con binaryTargets para Linux
+    console.log('🔄 Regenerando cliente Prisma con binaryTargets para Linux...');
+    try {
+      execSync('npx prisma generate', { stdio: 'inherit' });
+      console.log('✅ Cliente Prisma regenerado exitosamente');
+    } catch (error) {
+      console.log('⚠️ Error regenerando cliente Prisma, intentando con ruta directa...');
+      try {
+        execSync('./node_modules/.bin/prisma generate', { stdio: 'inherit' });
+        console.log('✅ Cliente Prisma regenerado exitosamente (ruta directa)');
+      } catch (error2) {
+        console.log('❌ No se pudo regenerar el cliente Prisma:', error2.message);
+        // Continuar con el cliente existente, no es crítico
+        console.log('⚠️ Continuando con cliente existente...');
+      }
+    }
     
     // Verificar conexión a base de datos
     console.log('🔍 Verificando conexión a base de datos...');
