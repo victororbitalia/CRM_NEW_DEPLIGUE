@@ -17,8 +17,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Generar cliente Prisma
-RUN npx prisma generate
+# Generar cliente Prisma con binaryTargets para Linux
+RUN npx prisma generate --binary-target=linux-musl-openssl-3.0.x
 
 # Construir aplicación
 ENV NEXT_TELEMETRY_DISABLED=1
