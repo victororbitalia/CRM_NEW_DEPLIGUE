@@ -1,5 +1,27 @@
 const { PrismaClient } = require('@prisma/client');
 const { execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+
+function removePrismaClientCache() {
+  const prismaClientDir = path.join(process.cwd(), 'node_modules', '.prisma', 'client');
+  if (fs.existsSync(prismaClientDir)) {
+    fs.rmSync(prismaClientDir, { recursive: true, force: true });
+    console.log('✅ Caché de Prisma eliminada');
+  }
+}
+
+function runPrisma(command, { ignoreFailure = false } = {}) {
+  try {
+    execSync(`npx prisma ${command}`, { stdio: 'inherit' });
+    return true;
+  } catch (error) {
+    if (!ignoreFailure) {
+      throw error;
+    }
+    return false;
+  }
+}
 
 // Función para ejecutar la migración completa del schema
 async function runMigration() {
@@ -8,57 +30,25 @@ async function runMigration() {
   try {
     console.log('🔄 Iniciando migración completa del CRM Restaurante...');
     
-    // Forzar regeneración del cliente Prisma con binaryTargets para Linux
     console.log('🔄 Forzando regeneración del cliente Prisma con binaryTargets para Linux...');
-    try {
-      // Limpiar cliente existente para asegurar regeneración completa
-      execSync('rm -rf node_modules/.prisma/client', { stdio: 'inherit' });
-      console.log('✅ Cliente Prisma existente limpiado');
-      
-      // Generar cliente con binaryTargets configurados en schema.prisma
-      execSync('npx prisma generate', { stdio: 'inherit' });
-      console.log('✅ Cliente Prisma regenerado con binaryTargets para Linux');
-    } catch (error) {
-      console.log('⚠️ Error regenerando cliente Prisma, intentando con ruta directa...');
-      try {
-        execSync('./node_modules/.bin/prisma generate', { stdio: 'inherit' });
-        console.log('✅ Cliente Prisma regenerado exitosamente (ruta directa)');
-      } catch (error2) {
-        console.log('❌ No se pudo regenerar el cliente Prisma:', error2.message);
-        // Continuar con el cliente existente, no es crítico
-        console.log('⚠️ Continuando con cliente existente...');
-      }
-    }
+    removePrismaClientCache();
+    runPrisma('generate');
+    console.log('✅ Cliente Prisma regenerado con binaryTargets para Linux');
     
     // Verificar conexión a base de datos
     console.log('🔍 Verificando conexión a base de datos...');
     await prisma.$queryRaw`SELECT 1`;
     
-    // Crear tablas según el schema (db push es mejor para producción)
-    console.log('🏗️ Creando/actualizando tablas según schema...');
-    try {
-      execSync('npx prisma db push --accept-data-loss', { stdio: 'inherit' });
-    } catch (error) {
-      console.log('⚠️ Error con npx prisma db push, intentando con prisma directamente...');
-      try {
-        execSync('./node_modules/.bin/prisma db push --accept-data-loss', { stdio: 'inherit' });
-      } catch (error2) {
-        console.log('❌ No se pudo ejecutar db push:', error2.message);
-        throw error2;
-      }
-    }
-    
-    // Aplicar migraciones si existen
+    // Aplicar migraciones
     console.log('📋 Aplicando migraciones pendientes...');
     try {
-      execSync('npx prisma migrate deploy', { stdio: 'inherit' });
+      runPrisma('migrate deploy');
     } catch (error) {
-      console.log('⚠️ Error con npx prisma migrate deploy, intentando con prisma directamente...');
-      try {
-        execSync('./node_modules/.bin/prisma migrate deploy', { stdio: 'inherit' });
-      } catch (error2) {
-        console.log('ℹ️ No hay migraciones pendientes o ya fueron aplicadas');
+      if (error?.message?.includes('P3005')) {
+        console.error('❌ Error P3005: la base de datos no está vacía.');
+        console.error('ℹ️ Marca las migraciones existentes con `prisma migrate resolve --applied <migration>` antes de continuar.');
       }
+      throw error;
     }
     
     // Verificar que las tablas se crearon correctamente

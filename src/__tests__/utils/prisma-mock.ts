@@ -1,5 +1,5 @@
 // Mock Prisma Client for testing
-import { PrismaClient } from '@/generated/prisma';
+import { PrismaClient } from '@prisma/client';
 
 // Create a mock Prisma client
 const mockPrismaClient = {

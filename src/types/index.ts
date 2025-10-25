@@ -1,6 +1,3 @@
-// Prisma generated types
-export type { BusinessRule } from '@/generated/prisma';
-
 // User types
 export interface User {
   id: string;

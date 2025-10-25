@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { BusinessRule, CreateBusinessRuleData, UpdateBusinessRuleData } from '@/types';
+import type { BusinessRule } from '@prisma/client';
+import { CreateBusinessRuleData, UpdateBusinessRuleData } from '@/types';
 import { useBusinessRules } from '@/hooks/useBusinessRules';
 import { useNotifications } from '@/hooks/useNotifications';
 import Form, { FormField, FormLabel, FormActions } from '@/components/ui/Form';

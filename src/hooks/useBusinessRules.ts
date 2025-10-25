@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
+import type { BusinessRule } from '@prisma/client';
 import { 
-  BusinessRule, 
   CreateBusinessRuleData, 
   UpdateBusinessRuleData,
   ApiResponse 

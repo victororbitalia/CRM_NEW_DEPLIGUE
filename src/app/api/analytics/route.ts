@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { withAuthHandler } from '@/lib/auth/middleware';
 import { db } from '@/lib/db';
-import { Prisma } from '@/generated/prisma';
+import { Prisma } from '@prisma/client';
 
 // Get dashboard metrics
 export const GET = withAuthHandler(
