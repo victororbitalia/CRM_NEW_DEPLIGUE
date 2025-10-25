@@ -11,15 +11,32 @@ function removePrismaClientCache() {
   }
 }
 
-function runPrisma(command, { ignoreFailure = false } = {}) {
+function runPrisma(command, { ignoreFailure = false, captureOutput = false, allowErrorPattern } = {}) {
+  const execOptions = captureOutput
+    ? { stdio: ['inherit', 'pipe', 'pipe'], encoding: 'utf-8' }
+    : { stdio: 'inherit', encoding: 'utf-8' };
+
   try {
-    execSync(`npx prisma ${command}`, { stdio: 'inherit' });
-    return true;
+    const result = execSync(`npx prisma ${command}`, execOptions);
+    if (captureOutput && result) {
+      console.log(result.trim());
+    }
+    return { success: true };
   } catch (error) {
+    const stdout = error?.stdout ? error.stdout.toString() : '';
+    const stderr = error?.stderr ? error.stderr.toString() : '';
+    const message = error?.message ?? '';
+    const combinedOutput = [stdout, stderr, message].filter(Boolean).join('\n');
+
+    if (allowErrorPattern && allowErrorPattern.test(combinedOutput)) {
+      return { success: false, allowed: true, output: combinedOutput };
+    }
+
     if (!ignoreFailure) {
       throw error;
     }
-    return false;
+
+    return { success: false, output: combinedOutput };
   }
 }
 
@@ -41,17 +58,15 @@ async function runMigration() {
     
     // Aplicar migraciones
     console.log('📋 Aplicando migraciones pendientes...');
-    try {
-      runPrisma('migrate deploy');
-    } catch (error) {
-      const errorOutput = error?.stderr?.toString() ?? error?.stdout?.toString() ?? error?.message ?? '';
-      if (errorOutput.includes('P3005')) {
-        console.warn('⚠️ Prisma detectó que la base de datos ya contiene tablas (P3005).');
-        console.warn('ℹ️ Si es una base existente, registra las migraciones manualmente con `prisma migrate resolve --applied <migration>` para eliminar este aviso.');
-        console.warn('➡️ Continuando sin aplicar migraciones nuevas.');
-      } else {
-        throw error;
-      }
+    const migrateResult = runPrisma('migrate deploy', {
+      captureOutput: true,
+      allowErrorPattern: /P3005/,
+    });
+
+    if (migrateResult.allowed) {
+      console.warn('⚠️ Prisma detectó que la base de datos ya contiene tablas requeridas (P3005).');
+      console.warn('ℹ️ Si esta base ya estaba en producción, marca las migraciones existentes con `prisma migrate resolve --applied <migration>` para limpiar este aviso.');
+      console.warn('➡️ Continuando sin aplicar nuevas migraciones.');
     }
     
     // Verificar que las tablas se crearon correctamente
