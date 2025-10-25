@@ -3,8 +3,8 @@
 
 :root {
   /* Base colors */
-  --background: #ffffff;
-  --foreground: #1f2937;
+  --background: #f8fafc; /* Mantener fondo claro independientemente del modo del SO */
+  --foreground: #0f172a;
   
   /* Restaurant theme colors */
   --restaurant-gold: #f59e0b;
@@ -27,14 +27,6 @@
   --header-height: 4rem;
   --sidebar-width: 16rem;
   --container-padding: 1.5rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f1f5f9;
-    --restaurant-dark: #f1f5f9;
-  }
 }
 
 * {
