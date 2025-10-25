@@ -44,11 +44,14 @@ async function runMigration() {
     try {
       runPrisma('migrate deploy');
     } catch (error) {
-      if (error?.message?.includes('P3005')) {
-        console.error('❌ Error P3005: la base de datos no está vacía.');
-        console.error('ℹ️ Marca las migraciones existentes con `prisma migrate resolve --applied <migration>` antes de continuar.');
+      const errorOutput = error?.stderr?.toString() ?? error?.stdout?.toString() ?? error?.message ?? '';
+      if (errorOutput.includes('P3005')) {
+        console.warn('⚠️ Prisma detectó que la base de datos ya contiene tablas (P3005).');
+        console.warn('ℹ️ Si es una base existente, registra las migraciones manualmente con `prisma migrate resolve --applied <migration>` para eliminar este aviso.');
+        console.warn('➡️ Continuando sin aplicar migraciones nuevas.');
+      } else {
+        throw error;
       }
-      throw error;
     }
     
     // Verificar que las tablas se crearon correctamente
